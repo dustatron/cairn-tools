@@ -84,7 +84,7 @@ export const Navbar = () => {
           </Link>
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden md:flex">{searchInput}</NavbarItem>
+        {/* <NavbarItem className="hidden md:flex">{searchInput}</NavbarItem> */}
       </NavbarContent>
 
       <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
