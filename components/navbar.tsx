@@ -60,7 +60,7 @@ export const Navbar = () => {
                   linkStyles({
                     color: pathname === item.href ? "primary" : "foreground",
                   }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
                 href={item.href}
               >

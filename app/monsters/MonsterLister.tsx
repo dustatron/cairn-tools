@@ -15,7 +15,6 @@ type Props = {
 };
 export function MonsterLister({ list }: Props) {
   const [filteredList, setFilteredList] = useState<MonstersRecord[]>(list);
-  const [search, setSearch] = useState("");
 
   const fuse = new Fuse<MonstersRecord>(list, {
     keys: ["name", "description", "detail1", "detail2", "detail3"],

@@ -81,7 +81,7 @@ export function MonsterTables({ list }: Props) {
                         linkStyles({
                           color: "primary",
                         }),
-                        "data-[active=true]:text-primary data-[active=true]:font-medium",
+                        "data-[active=true]:text-primary data-[active=true]:font-medium"
                       )}
                       href={`https://cairnrpg.com/resources/monsters/${row?.name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
                       target="_blank"
