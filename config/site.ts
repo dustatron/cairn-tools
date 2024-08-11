@@ -5,6 +5,10 @@ export const siteConfig = {
   description: "Create Encounter tables.",
   navItems: [
     {
+      label: "Collection",
+      href: "/collections",
+    },
+    {
       label: "Monsters",
       href: "/monsters",
     },

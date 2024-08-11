@@ -10,7 +10,6 @@ const getMonsterList = async () => {
   const monsterList = await pb
     .collection("monsters")
     .getFullList({ sort: "-created" });
-  console.log("monster list", monsterList);
   return monsterList;
 };
 
@@ -18,9 +17,11 @@ export default async function MonsterPage() {
   const monsterList = await getMonsterList();
 
   return (
-    <div>
+    <div className="">
       <h1 className={title()}>Monster List</h1>
-      {monsterList.length && <MonsterLister list={monsterList} />}
+      <div className="pt-2">
+        {monsterList.length && <MonsterLister list={monsterList} />}
+      </div>
     </div>
   );
 }
