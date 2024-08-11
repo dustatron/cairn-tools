@@ -5,18 +5,22 @@ import { createServerPb } from "@/utils/pocketbase";
 const getMonsterList = async () => {
   const pb = await createServerPb();
   const monsterList = await pb.collection("monsters").getFullList();
+  console.log("monster list in fetcher", monsterList);
   return monsterList;
 };
 
-export default function DocsPage() {
-  const monsterList = getMonsterList();
+export default async function MonsterPage() {
+  const monsterList = await getMonsterList();
 
-  console.log("monster list", monsterList);
+  console.log("monster list in component", monsterList);
   return (
     <div>
       <h1 className={title()}>Monsters</h1>
       <MonsterLister />
-      {JSON.stringify(monsterList)}
+      monster count = {monsterList.length}
+      {monsterList.map((monster) => (
+        <div>name:{monster.name}</div>
+      ))}
     </div>
   );
 }
