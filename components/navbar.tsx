@@ -22,7 +22,6 @@ import { GithubIcon, DiscordIcon, SearchIcon, Logo } from "@/components/icons";
 
 export const Navbar = () => {
   const pathname = usePathname();
-  console.log("pathname", pathname);
   const searchInput = (
     <Input
       aria-label="Search"
