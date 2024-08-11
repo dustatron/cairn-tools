@@ -7,6 +7,7 @@ import { FormEvent } from "react";
 import { MonsterCard } from "./MonsterCard";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
+import { MonsterTables } from "./MonsterTables";
 
 type Props = {
   list: MonstersRecord[];
@@ -49,7 +50,7 @@ export function MonsterLister({ list }: Props) {
         </div>
       </Tab>
       <Tab key="random-table" title="Random Tables">
-        <div className="flex flex-wrap justify-center w-full">table</div>
+        <MonsterTables list={list} />
       </Tab>
     </Tabs>
   );
