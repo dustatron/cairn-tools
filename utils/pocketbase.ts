@@ -1,6 +1,7 @@
-import { TypedPocketBase } from "@/types/pocketbase-types";
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import PocketBase from "pocketbase";
+
+import { TypedPocketBase } from "@/types/pocketbase-types";
 
 export function createServerPb(cookieStore?: ReadonlyRequestCookies) {
   if (!process.env.NEXT_PUBLIC_POCKETBASE_API_URL) {
@@ -9,12 +10,12 @@ export function createServerPb(cookieStore?: ReadonlyRequestCookies) {
 
   if (typeof window !== "undefined") {
     throw new Error(
-      "This method is only supposed to call from the Server environment"
+      "This method is only supposed to call from the Server environment",
     );
   }
 
   const client = new PocketBase(
-    process.env.NEXT_PUBLIC_POCKETBASE_API_URL
+    process.env.NEXT_PUBLIC_POCKETBASE_API_URL,
   ) as TypedPocketBase;
 
   if (cookieStore) {
@@ -37,7 +38,7 @@ export function clientPB() {
 
   const createNewClient = () => {
     return new PocketBase(
-      process.env.NEXT_PUBLIC_POCKETBASE_API_URL
+      process.env.NEXT_PUBLIC_POCKETBASE_API_URL,
     ) as TypedPocketBase;
   };
 
