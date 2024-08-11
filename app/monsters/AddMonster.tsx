@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@nextui-org/button";
-
 import { clientPB } from "@/utils/pocketbase";
 import { monsters } from "@/utils/monsters-list-data";
 
