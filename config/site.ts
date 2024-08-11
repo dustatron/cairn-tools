@@ -5,20 +5,16 @@ export const siteConfig = {
   description: "Create Encounter tables.",
   navItems: [
     {
-      label: "Home",
-      href: "/",
+      label: "Monsters",
+      href: "/monsters",
     },
     {
-      label: "Docs",
-      href: "/docs",
+      label: "Spells",
+      href: "/spells",
     },
     {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
+      label: "Relics",
+      href: "/relics",
     },
     {
       label: "About",
@@ -27,43 +23,29 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Home",
+      href: "/",
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: "Monsters",
+      href: "/monsters",
     },
     {
-      label: "Projects",
-      href: "/projects",
+      label: "Spells",
+      href: "/spells",
     },
     {
-      label: "Team",
-      href: "/team",
+      label: "Relics",
+      href: "/relics",
     },
     {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      label: "About",
+      href: "/about",
     },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    github: "https://github.com/dustatron/cairn-tools",
+    docs: "https://cairnrpg.com",
+    discord: "https://cairnrpg.com/discord-server/",
   },
 };
