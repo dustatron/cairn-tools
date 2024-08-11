@@ -1,6 +1,5 @@
 "use client";
-import { HeartIcon } from "@/components/HeartIcon";
-import { MonstersRecord } from "@/types/pocketbase-types";
+
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { link as linkStyles } from "@nextui-org/theme";
@@ -15,8 +14,9 @@ import {
   TableCell,
 } from "@nextui-org/table";
 import clsx from "clsx";
-import Link from "next/link";
 import React, { useState } from "react";
+
+import { MonstersRecord } from "@/types/pocketbase-types";
 import { FavoriteButton } from "@/components/FavoriteButton";
 
 type Props = {
@@ -37,6 +37,7 @@ export function MonsterCard({ monster }: Props) {
     wil,
   } = monster;
   const [liked, setLiked] = useState(false);
+
   return (
     <Card className="w-[500px] border-1 border-gray-700" radius="sm">
       <CardHeader className="flex gap-3">
@@ -82,14 +83,14 @@ export function MonsterCard({ monster }: Props) {
       <CardFooter>
         <div className="w-full flex justify-end">
           <NextLink
-            target="_blank"
             className={clsx(
               linkStyles({
                 color: "primary",
               }),
-              "data-[active=true]:text-primary data-[active=true]:font-medium"
+              "data-[active=true]:text-primary data-[active=true]:font-medium",
             )}
             href={`https://cairnrpg.com/resources/monsters/${name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
+            target="_blank"
           >
             <Button variant="faded">Source</Button>
           </NextLink>

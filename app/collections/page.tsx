@@ -1,5 +1,6 @@
-import { title } from "@/components/primitives";
 import { CollectionView } from "./CollectionView";
+
+import { title } from "@/components/primitives";
 
 export default function AboutPage() {
   return (

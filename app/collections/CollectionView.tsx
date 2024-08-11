@@ -3,7 +3,7 @@ import { Tab, Tabs } from "@nextui-org/tabs";
 
 export function CollectionView() {
   return (
-    <Tabs color="primary" aria-label="Tabs colors" radius="sm">
+    <Tabs aria-label="Tabs colors" color="primary" radius="sm">
       <Tab key="mosters" title="Monsters">
         spells
       </Tab>

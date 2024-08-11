@@ -1,6 +1,7 @@
 "use client";
-import { clientPB } from "@/utils/pocketbase";
 import { Button } from "@nextui-org/button";
+
+import { clientPB } from "@/utils/pocketbase";
 import { monsters } from "@/utils/monsters-list-data";
 
 // Just using this to seed the database with monsters
@@ -27,6 +28,7 @@ export function AddMonster() {
         detail2: details[2],
         detail3: details[3],
       };
+
       pb.collection("monsters")
         .create(data)
         .then((res) => {
