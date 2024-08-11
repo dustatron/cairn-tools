@@ -14,15 +14,24 @@ import {
   TableCell,
 } from "@nextui-org/table";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
+import { LocalMonsterRecord } from "@/types/sharedTypes";
+import { MONSTER_KEY } from "@/types/keys";
 
 type Props = {
   monster: MonstersRecord;
 };
+
 export function MonsterCard({ monster }: Props) {
+  const [liked, setLiked] = useState(false);
+
+  const [localStorage, setToLocalStorage] =
+    useLocalStorage<LocalMonsterRecord>(MONSTER_KEY);
+
   const {
     name,
     armor,
@@ -36,7 +45,41 @@ export function MonsterCard({ monster }: Props) {
     str,
     wil,
   } = monster;
-  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    if (Array.isArray(localStorage?.monsterList)) {
+      const isFavorite = !!localStorage?.monsterList.find(
+        (item) => item.id === monster.id
+      );
+      if (isFavorite) {
+        setLiked(isFavorite);
+      }
+    }
+  }, [localStorage?.monsterList]);
+
+  const toggleFavorite = () => {
+    setLiked(!liked);
+
+    if (liked) {
+      if (Array.isArray(localStorage?.monsterList)) {
+        const filterd = localStorage?.monsterList.filter(
+          (item) => item.id != monster.id
+        );
+        setToLocalStorage({ monsterList: filterd });
+      }
+    }
+    if (!liked) {
+      if (Array.isArray(localStorage?.monsterList)) {
+        setToLocalStorage({
+          monsterList: [...localStorage?.monsterList, monster],
+        });
+      } else {
+        setToLocalStorage({
+          monsterList: [monster],
+        });
+      }
+    }
+  };
 
   return (
     <Card className="w-[500px] border-1 border-gray-700" radius="sm">
@@ -48,7 +91,7 @@ export function MonsterCard({ monster }: Props) {
               Attack: {attack}
             </p>
           </div>
-          <FavoriteButton isFav={liked} setFav={setLiked} />
+          <FavoriteButton isFav={liked} setFav={toggleFavorite} />
         </div>
       </CardHeader>
       <Divider />
@@ -87,7 +130,7 @@ export function MonsterCard({ monster }: Props) {
               linkStyles({
                 color: "primary",
               }),
-              "data-[active=true]:text-primary data-[active=true]:font-medium",
+              "data-[active=true]:text-primary data-[active=true]:font-medium"
             )}
             href={`https://cairnrpg.com/resources/monsters/${name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
             target="_blank"

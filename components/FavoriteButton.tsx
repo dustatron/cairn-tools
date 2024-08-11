@@ -4,7 +4,7 @@ import { CiCircleMinus } from "react-icons/ci";
 
 type Props = {
   isFav?: boolean;
-  setFav: (fav: boolean) => void;
+  setFav: () => void;
 };
 export function FavoriteButton({ isFav, setFav }: Props) {
   return (
@@ -13,7 +13,7 @@ export function FavoriteButton({ isFav, setFav }: Props) {
       className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
       radius="full"
       variant="faded"
-      onPress={() => setFav(!isFav)}
+      onPress={() => setFav()}
     >
       {isFav ? (
         <CiCircleMinus color="red" size="md" />

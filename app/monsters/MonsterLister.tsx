@@ -5,7 +5,7 @@ import Fuse from "fuse.js";
 
 import { SearchInput } from "../../components/SearchInput";
 
-import { MonsterTables } from "./MonsterTables";
+import { MonsterTables } from "../../components/MonsterTables";
 import { MonsterCard } from "./MonsterCard";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
