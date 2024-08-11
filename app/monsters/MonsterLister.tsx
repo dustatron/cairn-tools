@@ -11,7 +11,7 @@ import { MonsterTables } from "./MonsterTables";
 import Fuse from "fuse.js";
 import { Chip } from "@nextui-org/chip";
 import { Card, CardBody } from "@nextui-org/card";
-import { SearchInput } from "./SearchInput";
+import { SearchInput } from "../../components/SearchInput";
 
 type Props = {
   list: MonstersRecord[];

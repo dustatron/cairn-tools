@@ -26,7 +26,7 @@ export function SearchInput({ onClear, onSearch }: Props) {
       <Input
         isClearable
         className="max-w-xs"
-        label="Monster Search"
+        label="Search by title and description"
         size="sm"
         type="text"
         variant="flat"
