@@ -39,6 +39,7 @@ export type AuthSystemFields<T = never> = {
 // Record types for each collection
 
 export type MonstersRecord = {
+  id: string;
   armor?: number;
   attack?: string;
   description?: string;
