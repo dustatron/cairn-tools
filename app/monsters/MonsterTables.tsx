@@ -1,7 +1,5 @@
 import NextLink from "next/link";
 import { link as linkStyles } from "@nextui-org/theme";
-import { MonstersRecord } from "@/types/pocketbase-types";
-import { makeRandomSelection } from "@/utils/randomSelection";
 import { Button } from "@nextui-org/button";
 import {
   Table,
@@ -13,6 +11,9 @@ import {
 } from "@nextui-org/table";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+
+import { makeRandomSelection } from "@/utils/randomSelection";
+import { MonstersRecord } from "@/types/pocketbase-types";
 type Props = {
   list: MonstersRecord[];
 };
@@ -24,6 +25,7 @@ export function MonsterTables({ list }: Props) {
   const onSelect = (amount: number) => {
     setSelected(amount);
     const randomList = makeRandomSelection(amount, list);
+
     setList(randomList);
   };
 
@@ -35,6 +37,7 @@ export function MonsterTables({ list }: Props) {
     <div className="flex flex-wrap justify-center w-full gap-2">
       {options.map((op) => (
         <Button
+          key={op}
           color={selected === op ? "primary" : "default"}
           onClick={() => onSelect(op)}
         >
@@ -78,7 +81,7 @@ export function MonsterTables({ list }: Props) {
                         linkStyles({
                           color: "primary",
                         }),
-                        "data-[active=true]:text-primary data-[active=true]:font-medium"
+                        "data-[active=true]:text-primary data-[active=true]:font-medium",
                       )}
                       href={`https://cairnrpg.com/resources/monsters/${row?.name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
                       target="_blank"

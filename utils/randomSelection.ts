@@ -2,7 +2,7 @@ import { MonstersRecord } from "@/types/pocketbase-types";
 
 export function makeRandomSelection(
   amount: number,
-  monstersList: MonstersRecord[]
+  monstersList: MonstersRecord[],
 ) {
   let randNumbers = new Set<number>();
 
@@ -10,6 +10,7 @@ export function makeRandomSelection(
 
   while (randNumbers.size < amount) {
     const currentNumb = Math.floor(Math.random() * monstersList.length);
+
     if (!randNumbers.has(currentNumb)) {
       randNumbers.add(currentNumb);
     }
@@ -17,5 +18,6 @@ export function makeRandomSelection(
   randNumbers.forEach((num) => {
     randomSelection.push(monstersList[num]);
   });
+
   return randomSelection;
 }

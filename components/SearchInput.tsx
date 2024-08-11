@@ -18,6 +18,7 @@ export function SearchInput({ onClear, onSearch }: Props) {
     setSearchInput("");
     onClear();
   };
+
   return (
     <form
       className="flex justify-center items-center gap-2 p-3 w-1/3"
@@ -29,8 +30,8 @@ export function SearchInput({ onClear, onSearch }: Props) {
         label="Search by title and description"
         size="sm"
         type="text"
-        variant="flat"
         value={searchInput}
+        variant="flat"
         onChange={(e) => {
           setSearchInput(e.target.value);
         }}

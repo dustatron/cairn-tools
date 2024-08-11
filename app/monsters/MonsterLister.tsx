@@ -1,17 +1,14 @@
 "use client";
 import { Tab, Tabs } from "@nextui-org/tabs";
-import { Input } from "@nextui-org/input";
-import { Button } from "@nextui-org/button";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import Fuse from "fuse.js";
 
+import { SearchInput } from "../../components/SearchInput";
+
+import { MonsterTables } from "./MonsterTables";
 import { MonsterCard } from "./MonsterCard";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
-import { MonsterTables } from "./MonsterTables";
-import Fuse from "fuse.js";
-import { Chip } from "@nextui-org/chip";
-import { Card, CardBody } from "@nextui-org/card";
-import { SearchInput } from "../../components/SearchInput";
 
 type Props = {
   list: MonstersRecord[];
@@ -31,6 +28,7 @@ export function MonsterLister({ list }: Props) {
       const newList = fuse.search(search).map((item) => {
         return item.item;
       });
+
       setFilteredList(newList);
     } else {
       setFilteredList(list);
