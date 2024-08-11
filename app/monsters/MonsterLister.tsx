@@ -2,49 +2,60 @@
 import { Tab, Tabs } from "@nextui-org/tabs";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 import { MonsterCard } from "./MonsterCard";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
 import { MonsterTables } from "./MonsterTables";
+import Fuse from "fuse.js";
+import { Chip } from "@nextui-org/chip";
+import { Card, CardBody } from "@nextui-org/card";
+import { SearchInput } from "./SearchInput";
 
 type Props = {
   list: MonstersRecord[];
 };
 export function MonsterLister({ list }: Props) {
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [filteredList, setFilteredList] = useState<MonstersRecord[]>(list);
+  const [search, setSearch] = useState("");
+
+  const fuse = new Fuse<MonstersRecord>(list, {
+    keys: ["name", "description", "detail1", "detail2", "detail3"],
+    isCaseSensitive: false,
+    threshold: 0.3,
+  });
+
+  function makeSelection(search: string) {
+    if (search) {
+      const newList = fuse.search(search).map((item) => {
+        return item.item;
+      });
+      setFilteredList(newList);
+    } else {
+      setFilteredList(list);
+    }
+  }
+
+  const handleSearch = (searchTerm: string) => {
+    makeSelection(searchTerm);
+  };
+
+  const handleClear = () => {
+    setFilteredList(list);
   };
 
   return (
     <Tabs aria-label="Tabs colors" color="primary" radius="sm">
       <Tab key="search" title="Search">
-        <form
-          className="flex justify-center items-center gap-2 p-3"
-          onSubmit={handleSearch}
-        >
-          <Input
-            isClearable
-            className="max-w-xs"
-            label="Monster Search"
-            size="sm"
-            type="text"
-            variant="flat"
-            onClear={() => console.log("input cleared")}
-          />
-          <Button
-            className="max-w-xs"
-            color="primary"
-            radius="sm"
-            size="lg"
-            type="submit"
-          >
-            Search
-          </Button>
-        </form>
+        <div className="flex justify-center">
+          <SearchInput onClear={handleClear} onSearch={handleSearch} />
+          <div className=" w-30% p-2 mb-1 flex justify-center items-center rounded-md text-gray-600 font-semibold">
+            <p>Showing: {filteredList.length}</p>
+          </div>
+        </div>
         <div className="flex flex-wrap gap-3 justify-center">
-          {list.map((monster) => (
+          {filteredList.map((monster) => (
             <MonsterCard key={monster.id} monster={monster} />
           ))}
         </div>
