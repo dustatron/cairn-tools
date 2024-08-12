@@ -12,15 +12,17 @@ export function useLocalStorage<T>(
 
   const setter = (toStore: LocalStore) => {
     setToLocalStorage(storageKey, toStore);
-    setStorageVal(toStore as T);
+    if (typeof window !== "undefined") {
+      setStorageVal(toStore as T);
+    }
   };
 
   return [storageVal, setter];
 }
 
 function getFromLocalStorage<T>(key: string): T {
-  if (!localStorage) return "" as T;
-  const value = localStorage?.getItem(key);
+  if (typeof window === "undefined") return "" as T;
+  const value = window?.localStorage?.getItem(key);
 
   // handle json
   try {
@@ -32,7 +34,7 @@ function getFromLocalStorage<T>(key: string): T {
 }
 
 const setToLocalStorage = (key: string, value: LocalStore) => {
-  if (!localStorage) return null;
+  if (typeof window === "undefined") return null;
   let result = "";
 
   if (value && typeof value === "object") {
@@ -40,5 +42,5 @@ const setToLocalStorage = (key: string, value: LocalStore) => {
   } else {
     result = value;
   }
-  localStorage?.setItem(key, result);
+  window?.localStorage?.setItem(key, result);
 };
