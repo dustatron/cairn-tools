@@ -2,6 +2,7 @@ import RelicCard from "./RelicCard";
 
 import { title } from "@/components/primitives";
 import { createServerPb } from "@/utils/pocketbase";
+
 const getSpellList = async () => {
   const pb = await createServerPb();
   const monsterList = await pb
