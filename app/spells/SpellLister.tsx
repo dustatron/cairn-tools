@@ -4,8 +4,10 @@ import { useState } from "react";
 import Fuse from "fuse.js";
 
 import { SearchInput } from "../../components/SearchInput";
+
 import SpellCard from "./SpellCard";
-import { MonstersRecord, SpellsRecord } from "@/types/pocketbase-types";
+
+import { SpellsRecord } from "@/types/pocketbase-types";
 
 type Props = {
   list: SpellsRecord[];

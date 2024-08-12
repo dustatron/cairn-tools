@@ -3,10 +3,10 @@ import { useState } from "react";
 type LocalStore = { [key: string]: any };
 
 export function useLocalStorage<T>(
-  storageKey: string
+  storageKey: string,
 ): [T, (localStore: LocalStore) => void] {
   const [storageVal, setStorageVal] = useState<T>(
-    getFromLocalStorage<T>(storageKey)
+    getFromLocalStorage<T>(storageKey),
   );
 
   const setter = (toStore: LocalStore) => {
@@ -19,6 +19,7 @@ export function useLocalStorage<T>(
 
 function getFromLocalStorage<T>(key: string): T {
   const value = localStorage.getItem(key);
+
   // handle json
   try {
     return JSON.parse(value || "");
@@ -30,6 +31,7 @@ function getFromLocalStorage<T>(key: string): T {
 
 const setToLocalStorage = (key: string, value: LocalStore) => {
   let result = "";
+
   if (value && typeof value === "object") {
     result = JSON.stringify(value);
   } else {

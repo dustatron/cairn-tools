@@ -10,6 +10,7 @@ export function AddSpells() {
   const addSpellToList = async () => {
     const pb = await clientPB();
     const spellList = moreSpells.slice(3);
+
     for (let spell of spellList) {
       const { description, number, title } = spell;
       const data = {

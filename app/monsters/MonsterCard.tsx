@@ -2,7 +2,7 @@
 
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
-import { link as linkStyles, toggle } from "@nextui-org/theme";
+import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import { Divider } from "@nextui-org/divider";
 import {
@@ -50,8 +50,9 @@ export function MonsterCard({ monster }: Props) {
   useEffect(() => {
     if (Array.isArray(localStorage?.monsterList)) {
       const isFavorite = !!localStorage?.monsterList.find(
-        (item) => item.id === monster.id
+        (item) => item.id === monster.id,
       );
+
       if (isFavorite) {
         setLiked(isFavorite);
       }
@@ -66,6 +67,7 @@ export function MonsterCard({ monster }: Props) {
       liked,
       setLiked,
     });
+
     setToLocalStorage(result);
   };
 
@@ -118,7 +120,7 @@ export function MonsterCard({ monster }: Props) {
               linkStyles({
                 color: "primary",
               }),
-              "data-[active=true]:text-primary data-[active=true]:font-medium"
+              "data-[active=true]:text-primary data-[active=true]:font-medium",
             )}
             href={`https://cairnrpg.com/resources/monsters/${name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
             target="_blank"

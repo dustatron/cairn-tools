@@ -1,10 +1,10 @@
 "use client";
-import { FavoriteButton } from "@/components/FavoriteButton";
-import { SpellsRecord } from "@/types/pocketbase-types";
 import { Divider } from "@nextui-org/divider";
-
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { useEffect, useState } from "react";
+
+import { SpellsRecord } from "@/types/pocketbase-types";
+import { FavoriteButton } from "@/components/FavoriteButton";
 import { setFavorite } from "@/utils/setFavorite";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { SPELL_KEY } from "@/types/keys";
@@ -26,8 +26,9 @@ export default function SpellCard({ spell }: Props) {
   useEffect(() => {
     if (Array.isArray(localStorage?.spellList)) {
       const isFavorite = !!localStorage?.spellList.find(
-        (item) => item.id === spell.id
+        (item) => item.id === spell.id,
       );
+
       if (isFavorite) {
         setLiked(isFavorite);
       }
@@ -42,6 +43,7 @@ export default function SpellCard({ spell }: Props) {
       liked,
       setLiked,
     });
+
     setToLocalStorage(result);
   };
 
@@ -59,7 +61,7 @@ export default function SpellCard({ spell }: Props) {
       <CardBody>
         <div className=" w-full p-3 mb-2">{description}</div>
       </CardBody>
-      <CardFooter></CardFooter>
+      <CardFooter />
     </Card>
   );
 }

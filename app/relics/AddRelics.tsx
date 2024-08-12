@@ -9,6 +9,7 @@ export function AddRelics() {
   const addRelicToList = async () => {
     const pb = await clientPB();
     const relicListOptions = relicList;
+
     for (let relic of relicListOptions) {
       const { details, recharge, title } = relic;
 

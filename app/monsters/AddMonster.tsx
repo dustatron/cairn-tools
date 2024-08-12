@@ -2,7 +2,7 @@
 import { Button } from "@nextui-org/button";
 
 import { clientPB } from "@/utils/pocketbase";
-import { monsters } from "@/utils/monsters-list-data";
+import { monsters } from "@/utils/data-files/monsters-list-data";
 
 // Just using this to seed the database with monsters
 export function AddMonster() {

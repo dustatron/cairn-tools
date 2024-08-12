@@ -1,10 +1,7 @@
 "use client";
-import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { Tab, Tabs } from "@nextui-org/tabs";
 import NextLink from "next/link";
 import { link as linkStyles } from "@nextui-org/theme";
-import { LocalMonsterRecord } from "@/types/sharedTypes";
-import { MONSTER_KEY } from "@/types/keys";
 import {
   Table,
   TableBody,
@@ -15,6 +12,10 @@ import {
 } from "@nextui-org/table";
 import { Button } from "@nextui-org/button";
 import clsx from "clsx";
+
+import { MONSTER_KEY } from "@/types/keys";
+import { LocalMonsterRecord } from "@/types/sharedTypes";
+import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 
 export function CollectionView() {
   const [monsterStore, setMonsterStore] =
@@ -59,7 +60,7 @@ export function CollectionView() {
                         linkStyles({
                           color: "primary",
                         }),
-                        "data-[active=true]:text-primary data-[active=true]:font-medium"
+                        "data-[active=true]:text-primary data-[active=true]:font-medium",
                       )}
                       href={`https://cairnrpg.com/resources/monsters/${row?.name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
                       target="_blank"
