@@ -2,7 +2,7 @@
 
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
-import { link as linkStyles } from "@nextui-org/theme";
+import { link as linkStyles, toggle } from "@nextui-org/theme";
 import NextLink from "next/link";
 import { Divider } from "@nextui-org/divider";
 import {
@@ -21,6 +21,7 @@ import { FavoriteButton } from "@/components/FavoriteButton";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { LocalMonsterRecord } from "@/types/sharedTypes";
 import { MONSTER_KEY } from "@/types/keys";
+import { setFavorite } from "@/utils/setFavorite";
 
 type Props = {
   monster: MonstersRecord;
@@ -58,27 +59,14 @@ export function MonsterCard({ monster }: Props) {
   }, [localStorage?.monsterList]);
 
   const toggleFavorite = () => {
-    setLiked(!liked);
-
-    if (liked) {
-      if (Array.isArray(localStorage?.monsterList)) {
-        const filterd = localStorage?.monsterList.filter(
-          (item) => item.id != monster.id
-        );
-        setToLocalStorage({ monsterList: filterd });
-      }
-    }
-    if (!liked) {
-      if (Array.isArray(localStorage?.monsterList)) {
-        setToLocalStorage({
-          monsterList: [...localStorage?.monsterList, monster],
-        });
-      } else {
-        setToLocalStorage({
-          monsterList: [monster],
-        });
-      }
-    }
+    const result = setFavorite({
+      currentLocalStorage: localStorage,
+      item: monster,
+      label: "monsterList",
+      liked,
+      setLiked,
+    });
+    setToLocalStorage(result);
   };
 
   return (

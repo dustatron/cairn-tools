@@ -11,6 +11,8 @@ export enum Collections {
   PokerUser = "pokerUser",
   PokerVote = "pokerVote",
   Posts = "posts",
+  Relics = "relics",
+  Spells = "spells",
   Users = "users",
 }
 
@@ -40,6 +42,7 @@ export type AuthSystemFields<T = never> = {
 
 export type MonstersRecord = {
   id: string;
+  ai_img_prompt?: string;
   armor?: number;
   attack?: string;
   description?: string;
@@ -48,6 +51,7 @@ export type MonstersRecord = {
   detail3?: string;
   dex?: number;
   hp?: number;
+  image_url?: string;
   name?: string;
   str?: number;
   wil?: number;
@@ -75,6 +79,26 @@ export type PostsRecord = {
   post?: HTMLString;
 };
 
+export type RelicsRecord = {
+  id: string;
+  charges?: number;
+  description?: string;
+  name?: string;
+  recharge?: string;
+};
+
+export enum SpellsTagsOptions {
+  "BASIC" = "BASIC",
+  "MORE_SPELLS" = "MORE_SPELLS",
+}
+export type SpellsRecord = {
+  id: string;
+  Tags?: SpellsTagsOptions[];
+  description?: string;
+  name?: string;
+  number?: number;
+};
+
 export type UsersRecord = {
   avatar?: string;
   name?: string;
@@ -91,6 +115,10 @@ export type PokerVoteResponse<Texpand = unknown> = Required<PokerVoteRecord> &
   BaseSystemFields<Texpand>;
 export type PostsResponse<Texpand = unknown> = Required<PostsRecord> &
   BaseSystemFields<Texpand>;
+export type RelicsResponse<Texpand = unknown> = Required<RelicsRecord> &
+  BaseSystemFields<Texpand>;
+export type SpellsResponse<Texpand = unknown> = Required<SpellsRecord> &
+  BaseSystemFields<Texpand>;
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> &
   AuthSystemFields<Texpand>;
 
@@ -102,6 +130,8 @@ export type CollectionRecords = {
   pokerUser: PokerUserRecord;
   pokerVote: PokerVoteRecord;
   posts: PostsRecord;
+  relics: RelicsRecord;
+  spells: SpellsRecord;
   users: UsersRecord;
 };
 
@@ -111,6 +141,8 @@ export type CollectionResponses = {
   pokerUser: PokerUserResponse;
   pokerVote: PokerVoteResponse;
   posts: PostsResponse;
+  relics: RelicsResponse;
+  spells: SpellsResponse;
   users: UsersResponse;
 };
 
@@ -123,5 +155,7 @@ export type TypedPocketBase = PocketBase & {
   collection(idOrName: "pokerUser"): RecordService<PokerUserResponse>;
   collection(idOrName: "pokerVote"): RecordService<PokerVoteResponse>;
   collection(idOrName: "posts"): RecordService<PostsResponse>;
+  collection(idOrName: "relics"): RecordService<RelicsResponse>;
+  collection(idOrName: "spells"): RecordService<SpellsResponse>;
   collection(idOrName: "users"): RecordService<UsersResponse>;
 };
