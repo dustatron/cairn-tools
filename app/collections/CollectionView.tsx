@@ -24,7 +24,7 @@ export function CollectionView() {
   return (
     <Tabs aria-label="Tabs colors" color="primary" radius="sm">
       <Tab key="mosters" title="Monsters">
-        {monsterStore?.monsterList.length ? (
+        {monsterStore?.monsterList?.length ? (
           <Table aria-label="Example static collection table">
             <TableHeader>
               <TableColumn>#</TableColumn>
@@ -60,7 +60,7 @@ export function CollectionView() {
                         linkStyles({
                           color: "primary",
                         }),
-                        "data-[active=true]:text-primary data-[active=true]:font-medium",
+                        "data-[active=true]:text-primary data-[active=true]:font-medium"
                       )}
                       href={`https://cairnrpg.com/resources/monsters/${row?.name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
                       target="_blank"
