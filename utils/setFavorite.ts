@@ -7,6 +7,7 @@ type Props = {
   label: string;
   currentLocalStorage: { [key: string]: any } | null;
 };
+
 export const setFavorite = ({
   setLiked,
   liked,
@@ -22,7 +23,7 @@ export const setFavorite = ({
     if (currentLocalStorage && Array.isArray(currentLocalStorage[label])) {
       const filterd = currentLocalStorage[label].filter(
         // @ts-ignore
-        (value) => value.id != item.id,
+        (value) => value.id != item.id
       );
 
       result = { [label]: filterd };
@@ -31,7 +32,7 @@ export const setFavorite = ({
   if (!liked) {
     if (currentLocalStorage && Array.isArray(currentLocalStorage[label])) {
       result = {
-        monsterList: [...currentLocalStorage[label], item],
+        [label]: [...currentLocalStorage[label], item],
       };
     } else {
       result = {

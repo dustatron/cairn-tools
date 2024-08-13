@@ -22,7 +22,7 @@ export function SearchInput({ onClear, onSearch }: Props) {
 
   return (
     <form
-      className="flex justify-center items-center gap-2 p-3 w-1/3"
+      className="flex justify-center items-center gap-2 p-3 w-full"
       onSubmit={handleSearch}
     >
       <Input

@@ -1,18 +1,5 @@
 "use client";
 import { Tab, Tabs } from "@nextui-org/tabs";
-import NextLink from "next/link";
-import { link as linkStyles } from "@nextui-org/theme";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/table";
-import { Button } from "@nextui-org/button";
-import clsx from "clsx";
-
 import { MONSTER_KEY, SPELL_KEY, RELIC_KEY } from "@/types/keys";
 import {
   LocalMonsterRecord,

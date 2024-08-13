@@ -16,7 +16,7 @@ type Props = {
 
 export default function SpellTable({ list }: Props) {
   return (
-    <Table aria-label="Example static collection table">
+    <Table aria-label="Table of spells">
       <TableHeader>
         <TableColumn>#</TableColumn>
         <TableColumn>Action</TableColumn>

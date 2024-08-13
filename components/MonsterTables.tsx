@@ -17,7 +17,7 @@ type Props = {
 };
 export function MonsterTables({ list }: Props) {
   return (
-    <Table aria-label="Example static collection table">
+    <Table aria-label="Monster list">
       <TableHeader>
         <TableColumn>#</TableColumn>
         <TableColumn>Action</TableColumn>

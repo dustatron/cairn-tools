@@ -51,9 +51,6 @@ export default function RelicList({ relicList }: Props) {
         <Tab key="search" title="Search">
           <div className="flex justify-center">
             <SearchInput onClear={handleClear} onSearch={handleSearch} />
-            <div className=" w-30% p-2 mb-1 flex justify-center items-center rounded-md text-gray-600 font-semibold">
-              <p>Showing: {filteredList.length}</p>
-            </div>
           </div>
           <div className="flex flex-wrap gap-3 justify-center">
             {filteredList &&

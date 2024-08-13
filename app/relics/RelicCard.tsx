@@ -18,15 +18,16 @@ type LocalRelicRecord = {
 };
 
 export default function RelicCard({ relic }: Props) {
+  const [liked, setLiked] = useState(false);
   const [localStorage, setToLocalStorage] =
     useLocalStorage<LocalRelicRecord>(RELIC_KEY);
+
   const { name, charges, description, recharge } = relic;
-  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     if (Array.isArray(localStorage?.relicList)) {
       const isFavorite = !!localStorage?.relicList.find(
-        (item) => item.id === relic.id,
+        (item) => item.id === relic.id
       );
 
       if (isFavorite) {

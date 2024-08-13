@@ -16,7 +16,7 @@ type Props = {
 
 export default function RelicTable({ list }: Props) {
   return (
-    <Table aria-label="Example static collection table">
+    <Table aria-label="List of Relics">
       <TableHeader>
         <TableColumn>#</TableColumn>
         <TableColumn>Action</TableColumn>
