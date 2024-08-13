@@ -47,7 +47,7 @@ export function MonsterLister({ list }: Props) {
   return (
     <Tabs aria-label="Tabs colors" color="primary" radius="sm">
       <Tab key="search" title="Search">
-        <div className="flex justify-center">
+        <div className="justify-center">
           <SearchInput onClear={handleClear} onSearch={handleSearch} />
         </div>
         <div className="flex flex-wrap gap-3 justify-center">

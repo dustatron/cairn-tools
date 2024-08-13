@@ -18,7 +18,9 @@ export default async function PricingPage() {
   return (
     <div>
       <h1 className={title()}>Spells</h1>
-      <div>{spellList && <SpellLister list={spellList} />}</div>
+      <div className="mt-2">
+        <SpellLister list={spellList} />
+      </div>
     </div>
   );
 }

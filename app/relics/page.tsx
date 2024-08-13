@@ -18,7 +18,9 @@ export default async function RelicPage() {
   return (
     <div>
       <h1 className={title()}>Relics</h1>
-      <RelicList relicList={relicList} />
+      <div className="mt-2">
+        <RelicList relicList={relicList} />
+      </div>
     </div>
   );
 }

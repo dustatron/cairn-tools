@@ -16,10 +16,10 @@ export default async function MonsterPage() {
   const monsterList = await getMonsterList();
 
   return (
-    <div className="">
+    <div>
       <h1 className={title()}>Monster List</h1>
-      <div className="pt-2">
-        {monsterList.length && <MonsterLister list={monsterList} />}
+      <div className="mt-2">
+        <MonsterLister list={monsterList} />
       </div>
     </div>
   );
