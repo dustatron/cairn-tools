@@ -13,74 +13,44 @@ import {
 import { Button } from "@nextui-org/button";
 import clsx from "clsx";
 
-import { MONSTER_KEY } from "@/types/keys";
-import { LocalMonsterRecord } from "@/types/sharedTypes";
+import { MONSTER_KEY, SPELL_KEY, RELIC_KEY } from "@/types/keys";
+import {
+  LocalMonsterRecord,
+  LocalRelicsRecord,
+  LocalSpellRecord,
+} from "@/types/sharedTypes";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
+import { MonsterTables } from "@/components/MonsterTables";
+import SpellTable from "../spells/SpellTable";
+import RelicTable from "../relics/RelicTable";
 
 export function CollectionView() {
-  const [monsterStore, setMonsterStore] =
-    useLocalStorage<LocalMonsterRecord>(MONSTER_KEY);
+  const [monsterStore] = useLocalStorage<LocalMonsterRecord>(MONSTER_KEY);
+  const [spellStore] = useLocalStorage<LocalSpellRecord>(SPELL_KEY);
+  const [relicStore] = useLocalStorage<LocalRelicsRecord>(RELIC_KEY);
 
   return (
     <Tabs aria-label="Tabs colors" color="primary" radius="sm">
       <Tab key="mosters" title="Monsters">
         {monsterStore?.monsterList?.length ? (
-          <Table aria-label="Example static collection table">
-            <TableHeader>
-              <TableColumn>#</TableColumn>
-              <TableColumn>Save</TableColumn>
-              <TableColumn>Monster</TableColumn>
-              <TableColumn>Armor</TableColumn>
-              <TableColumn>HP</TableColumn>
-              <TableColumn>STG</TableColumn>
-              <TableColumn>DEX</TableColumn>
-              <TableColumn>WIL</TableColumn>
-              <TableColumn>Attack</TableColumn>
-              <TableColumn>Description</TableColumn>
-              <TableColumn>Source</TableColumn>
-            </TableHeader>
-            <TableBody>
-              {monsterStore?.monsterList.map((row, index) => (
-                <TableRow key={row.id}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>
-                    <Button radius="full">+</Button>
-                  </TableCell>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.armor}</TableCell>
-                  <TableCell>{row.hp}</TableCell>
-                  <TableCell>{row.str}</TableCell>
-                  <TableCell>{row.dex}</TableCell>
-                  <TableCell>{row.wil}</TableCell>
-                  <TableCell>{row.attack}</TableCell>
-                  <TableCell>{row.description}</TableCell>
-                  <TableCell>
-                    <NextLink
-                      className={clsx(
-                        linkStyles({
-                          color: "primary",
-                        }),
-                        "data-[active=true]:text-primary data-[active=true]:font-medium",
-                      )}
-                      href={`https://cairnrpg.com/resources/monsters/${row?.name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
-                      target="_blank"
-                    >
-                      <Button variant="faded">More</Button>
-                    </NextLink>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <MonsterTables list={monsterStore.monsterList} />
         ) : (
           "no monsters selected"
         )}
       </Tab>
       <Tab key="spells" title="Spells">
-        spells
+        {spellStore?.spellList?.length ? (
+          <SpellTable list={spellStore.spellList} />
+        ) : (
+          "no spells selected"
+        )}
       </Tab>
       <Tab key="relics" title="Relics">
-        relics
+        {relicStore?.relicList?.length ? (
+          <RelicTable list={relicStore.relicList} />
+        ) : (
+          "no relics selected"
+        )}
       </Tab>
     </Tabs>
   );
