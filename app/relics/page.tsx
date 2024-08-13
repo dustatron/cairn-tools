@@ -1,4 +1,4 @@
-import RelicCard from "./RelicCard";
+import RelicList from "./RelicList";
 
 import { title } from "@/components/primitives";
 import { createServerPb } from "@/utils/pocketbase";
@@ -18,8 +18,7 @@ export default async function RelicPage() {
   return (
     <div>
       <h1 className={title()}>Relics</h1>
-      {relicList &&
-        relicList.map((relic) => <RelicCard key={relic.id} relic={relic} />)}
+      <RelicList relicList={relicList} />
     </div>
   );
 }

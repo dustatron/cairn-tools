@@ -6,14 +6,18 @@ import Fuse from "fuse.js";
 import { SearchInput } from "../../components/SearchInput";
 
 import SpellCard from "./SpellCard";
+import SpellTable from "./SpellTable";
 
 import { SpellsRecord } from "@/types/pocketbase-types";
+import { Lists } from "@/types";
+import { RandomTables } from "@/components/RandomTables";
 
 type Props = {
   list: SpellsRecord[];
 };
 export function SpellLister({ list }: Props) {
   const [filteredList, setFilteredList] = useState<SpellsRecord[]>(list);
+  const [currentList, setList] = useState<Lists>([]);
 
   const fuse = new Fuse<SpellsRecord>(list, {
     keys: ["name", "description"],
@@ -57,7 +61,9 @@ export function SpellLister({ list }: Props) {
         </div>
       </Tab>
       <Tab key="random-table" title="Random Tables">
-        {/* <MonsterTables list={list} /> */}
+        <RandomTables list={list} setList={setList}>
+          <SpellTable list={currentList} />
+        </RandomTables>
       </Tab>
     </Tabs>
   );

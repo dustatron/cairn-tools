@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { FormEvent, useState } from "react";

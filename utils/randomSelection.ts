@@ -1,12 +1,9 @@
-import { MonstersRecord } from "@/types/pocketbase-types";
+import { Lists } from "@/types";
 
-export function makeRandomSelection(
-  amount: number,
-  monstersList: MonstersRecord[],
-) {
+export function makeRandomSelection(amount: number, monstersList: Lists) {
   let randNumbers = new Set<number>();
 
-  const randomSelection: MonstersRecord[] = [];
+  const randomSelection: Lists = [];
 
   while (randNumbers.size < amount) {
     const currentNumb = Math.floor(Math.random() * monstersList.length);

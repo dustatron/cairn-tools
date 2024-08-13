@@ -66,7 +66,7 @@ export default function RelicCard({ relic }: Props) {
       </CardBody>
       <CardFooter>
         <div className=" w-full p-3 mb-2 text-left">
-          <h3>Rechatge:</h3>
+          <h3>Recharge:</h3>
           {recharge}
         </div>
       </CardFooter>

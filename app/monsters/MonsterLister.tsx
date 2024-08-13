@@ -9,12 +9,14 @@ import { MonsterTables } from "../../components/MonsterTables";
 import { MonsterCard } from "./MonsterCard";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
+import { RandomTables } from "@/components/RandomTables";
 
 type Props = {
   list: MonstersRecord[];
 };
 export function MonsterLister({ list }: Props) {
   const [filteredList, setFilteredList] = useState<MonstersRecord[]>(list);
+  const [currentList, setList] = useState<MonstersRecord[]>([]);
 
   const fuse = new Fuse<MonstersRecord>(list, {
     keys: ["name", "description", "detail1", "detail2", "detail3"],
@@ -58,7 +60,9 @@ export function MonsterLister({ list }: Props) {
         </div>
       </Tab>
       <Tab key="random-table" title="Random Tables">
-        <MonsterTables list={list} />
+        <RandomTables list={list} setList={setList}>
+          <MonsterTables list={currentList} />
+        </RandomTables>
       </Tab>
     </Tabs>
   );
