@@ -1,55 +1,51 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
+import Link from "next/link";
 import { button as buttonStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
 
 export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-lg text-center justify-center">
-        <h1 className={title()}>Make&nbsp;</h1>
-        <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
+        <h1 className={title()}>Cain RPG&nbsp;</h1>
+        <h1 className={title({ color: "violet" })}>Tools&nbsp;</h1>
         <br />
-        <h1 className={title()}>
-          websites regardless of your design experience.
-        </h1>
+        <h1 className={title()}>Build encounter tables.</h1>
         <h2 className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
+          Find for spells, relics, and monsters.
         </h2>
       </div>
 
       <div className="flex gap-3">
         <Link
-          isExternal
           className={buttonStyles({
             color: "primary",
             radius: "full",
             variant: "shadow",
           })}
-          href={siteConfig.links.docs}
+          href="/monsters"
         >
-          Documentation
+          Monsters
         </Link>
         <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
+          className={buttonStyles({
+            variant: "bordered",
+            radius: "full",
+            color: "warning",
+          })}
+          href="/spells"
         >
-          <GithubIcon size={20} />
-          GitHub
+          Spells
         </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
+        <Link
+          className={buttonStyles({
+            color: "success",
+            radius: "full",
+            variant: "shadow",
+          })}
+          href="/relics"
+        >
+          Relics
+        </Link>
       </div>
     </section>
   );

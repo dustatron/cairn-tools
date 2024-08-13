@@ -1,6 +1,8 @@
 "use client";
 import { Tab, Tabs } from "@nextui-org/tabs";
+import Link from "next/link";
 import { MONSTER_KEY, SPELL_KEY, RELIC_KEY } from "@/types/keys";
+import { button as buttonStyles } from "@nextui-org/theme";
 import {
   LocalMonsterRecord,
   LocalRelicsRecord,
@@ -22,7 +24,19 @@ export function CollectionView() {
         {monsterStore?.monsterList?.length ? (
           <MonsterTables list={monsterStore.monsterList} />
         ) : (
-          "no monsters selected"
+          <div>
+            <p>No Monsters selected</p>
+            <Link
+              className={buttonStyles({
+                color: "primary",
+                radius: "full",
+                variant: "shadow",
+              })}
+              href="/monsters"
+            >
+              Add Monsters
+            </Link>
+          </div>
         )}
       </Tab>
       <Tab key="spells" title="Spells">
