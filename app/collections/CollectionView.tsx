@@ -1,8 +1,12 @@
 "use client";
 import { Tab, Tabs } from "@nextui-org/tabs";
 import Link from "next/link";
-import { MONSTER_KEY, SPELL_KEY, RELIC_KEY } from "@/types/keys";
 import { button as buttonStyles } from "@nextui-org/theme";
+
+import SpellTable from "../spells/SpellTable";
+import RelicTable from "../relics/RelicTable";
+
+import { MONSTER_KEY, SPELL_KEY, RELIC_KEY } from "@/types/keys";
 import {
   LocalMonsterRecord,
   LocalRelicsRecord,
@@ -10,8 +14,6 @@ import {
 } from "@/types/sharedTypes";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { MonsterTables } from "@/components/MonsterTables";
-import SpellTable from "../spells/SpellTable";
-import RelicTable from "../relics/RelicTable";
 
 export function CollectionView() {
   const [monsterStore] = useLocalStorage<LocalMonsterRecord>(MONSTER_KEY);

@@ -27,7 +27,7 @@ export default function RelicCard({ relic }: Props) {
   useEffect(() => {
     if (Array.isArray(localStorage?.relicList)) {
       const isFavorite = !!localStorage?.relicList.find(
-        (item) => item.id === relic.id
+        (item) => item.id === relic.id,
       );
 
       if (isFavorite) {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { button as buttonStyles } from "@nextui-org/theme";
+
 import { title, subtitle } from "@/components/primitives";
 
 export default function Home() {

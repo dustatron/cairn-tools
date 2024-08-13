@@ -23,7 +23,7 @@ export const setFavorite = ({
     if (currentLocalStorage && Array.isArray(currentLocalStorage[label])) {
       const filterd = currentLocalStorage[label].filter(
         // @ts-ignore
-        (value) => value.id != item.id
+        (value) => value.id != item.id,
       );
 
       result = { [label]: filterd };

@@ -2,37 +2,39 @@ import * as React from "react";
 
 import { IconSvgProps } from "@/types";
 
-export const Logo: React.FC<IconSvgProps> = ({
-  size = 36,
-  width,
-  height,
-  ...props
-}) => (
+export const Logo: React.FC<IconSvgProps> = ({ width, height, ...props }) => (
   <svg
-    width="20px"
-    height="20px"
-    viewBox="0 -0.5 17 17"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
     className="si-glyph si-glyph-tool-box"
+    height="20px"
+    version="1.1"
+    viewBox="0 -0.5 17 17"
+    width="20px"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <title>1017</title>
 
-    <defs></defs>
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <g transform="translate(1.000000, 1.000000)" fill="#FF1CF7">
+    <defs />
+    <g
+      fill="none"
+      fillRule="evenodd"
+      height={height}
+      stroke="none"
+      width={width}
+      {...props}
+    >
+      <g fill="#FF1CF7" transform="translate(1.000000, 1.000000)">
         <path
+          className="si-glyph-fill"
           d="M11.988,8.031 L11.988,7 L4.031,7 L4.031,8.031 L1.938,8.031 L1.938,7 L0.0139770486,7 L0.0139770486,13 L16,13 L16,7 L14.031,7 L14.031,8.031 L11.988,8.031 Z"
-          className="si-glyph-fill"
-        ></path>
+        />
         <path
+          className="si-glyph-fill"
           d="M4,4.9855957 L4,5.96789551 L12,5.96789551 L12,4.9855957 L14,4.9855957 L14,5.96789551 L15.9873047,5.96789551 L15.9873045,3 L0,3 L2.21252548e-07,5.96789551 L1.97381592,5.96789551 L1.97381606,4.9855957 L4,4.9855957 Z"
-          className="si-glyph-fill"
-        ></path>
+        />
         <path
-          d="M6.0029298,1.943 L5.01,1.943 L5.01,0.031 L10.969,0.031 L10.969,1.94299991 L10.0092771,1.94299994 L10.009277,0.986999997 L6.0029297,0.98699997 L6.0029298,1.943 Z"
           className="si-glyph-fill"
-        ></path>
+          d="M6.0029298,1.943 L5.01,1.943 L5.01,0.031 L10.969,0.031 L10.969,1.94299991 L10.0092771,1.94299994 L10.009277,0.986999997 L6.0029297,0.98699997 L6.0029298,1.943 Z"
+        />
       </g>
     </g>
   </svg>

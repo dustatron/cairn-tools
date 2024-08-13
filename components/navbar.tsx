@@ -15,8 +15,8 @@ import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { text } from "@/components/primitives";
 
+import { text } from "@/components/primitives";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, DiscordIcon, SearchIcon, Logo } from "@/components/icons";
@@ -61,7 +61,7 @@ export const Navbar = () => {
                   linkStyles({
                     color: pathname === item.href ? "primary" : "foreground",
                   }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
                 href={item.href}
               >
