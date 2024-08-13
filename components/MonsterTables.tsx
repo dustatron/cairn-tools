@@ -20,7 +20,7 @@ export function MonsterTables({ list }: Props) {
     <Table aria-label="Example static collection table">
       <TableHeader>
         <TableColumn>#</TableColumn>
-        <TableColumn>Save</TableColumn>
+        <TableColumn>Action</TableColumn>
         <TableColumn>Monster</TableColumn>
         <TableColumn>Armor</TableColumn>
         <TableColumn>HP</TableColumn>
@@ -53,7 +53,7 @@ export function MonsterTables({ list }: Props) {
                     linkStyles({
                       color: "primary",
                     }),
-                    "data-[active=true]:text-primary data-[active=true]:font-medium",
+                    "data-[active=true]:text-primary data-[active=true]:font-medium"
                   )}
                   href={`https://cairnrpg.com/resources/monsters/${row?.name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
                   target="_blank"
