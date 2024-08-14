@@ -9,6 +9,7 @@ import {
 } from "@nextui-org/table";
 
 import { SpellsRecord } from "@/types/pocketbase-types";
+import ActionMenu from "@/components/ActionMenu";
 
 type Props = {
   list: SpellsRecord[];
@@ -29,7 +30,7 @@ export default function SpellTable({ list }: Props) {
             <TableRow key={row.id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>
-                <Button radius="full">+</Button>
+                <ActionMenu item={row} label="spellList" />
               </TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.description}</TableCell>

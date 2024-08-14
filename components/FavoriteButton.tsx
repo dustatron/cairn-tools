@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/button";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { CiCircleMinus } from "react-icons/ci";
+import { AddButton, MinusButton } from "./icons";
 
 type Props = {
   isFav?: boolean;
@@ -15,11 +16,7 @@ export function FavoriteButton({ isFav, setFav }: Props) {
       variant="faded"
       onPress={() => setFav()}
     >
-      {isFav ? (
-        <CiCircleMinus color="red" size="md" />
-      ) : (
-        <IoIosAddCircleOutline className="bg-blue-800" size="md" />
-      )}
+      {isFav ? <MinusButton /> : <AddButton />}
     </Button>
   );
 }

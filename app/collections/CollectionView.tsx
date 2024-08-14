@@ -16,9 +16,13 @@ import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { MonsterTables } from "@/components/MonsterTables";
 
 export function CollectionView() {
-  const [monsterStore] = useLocalStorage<LocalMonsterRecord>(MONSTER_KEY);
-  const [spellStore] = useLocalStorage<LocalSpellRecord>(SPELL_KEY);
-  const [relicStore] = useLocalStorage<LocalRelicsRecord>(RELIC_KEY);
+  const [monsterStore] = useLocalStorage<LocalMonsterRecord>(
+    "cairn-monster-selects"
+  );
+  const [spellStore] = useLocalStorage<LocalSpellRecord>("cairn-spell-selects");
+  const [relicStore] = useLocalStorage<LocalRelicsRecord>(
+    "cairn-relic-selects"
+  );
 
   return (
     <Tabs aria-label="Tabs colors" color="primary" radius="sm">

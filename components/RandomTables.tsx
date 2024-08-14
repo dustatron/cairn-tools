@@ -32,6 +32,7 @@ export function RandomTables({ list, children, setList }: Props) {
           key={op}
           color={selected === op ? "primary" : "default"}
           onClick={() => onSelect(op)}
+          variant={selected === op ? "shadow" : "bordered"}
         >
           {op}D
         </Button>

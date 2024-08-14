@@ -12,6 +12,7 @@ import {
 import clsx from "clsx";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
+import ActionMenu from "./ActionMenu";
 type Props = {
   list: MonstersRecord[];
 };
@@ -29,7 +30,6 @@ export function MonsterTables({ list }: Props) {
         <TableColumn>WIL</TableColumn>
         <TableColumn>Attack</TableColumn>
         <TableColumn>Description</TableColumn>
-        <TableColumn>Source</TableColumn>
       </TableHeader>
       <TableBody>
         {list.map((row, index) => {
@@ -37,7 +37,7 @@ export function MonsterTables({ list }: Props) {
             <TableRow key={row.id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>
-                <Button radius="full">+</Button>
+                <ActionMenu label="monsterList" item={row} />
               </TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.armor}</TableCell>
@@ -47,20 +47,6 @@ export function MonsterTables({ list }: Props) {
               <TableCell>{row.wil}</TableCell>
               <TableCell>{row.attack}</TableCell>
               <TableCell>{row.description}</TableCell>
-              <TableCell>
-                <NextLink
-                  className={clsx(
-                    linkStyles({
-                      color: "primary",
-                    }),
-                    "data-[active=true]:text-primary data-[active=true]:font-medium",
-                  )}
-                  href={`https://cairnrpg.com/resources/monsters/${row?.name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
-                  target="_blank"
-                >
-                  <Button variant="faded">More</Button>
-                </NextLink>
-              </TableCell>
             </TableRow>
           );
         })}

@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { IconSvgProps } from "@/types";
+import { useTheme } from "next-themes";
 
 export const Logo: React.FC<IconSvgProps> = ({ width, height, ...props }) => (
   <svg
@@ -226,6 +227,102 @@ export const NextUILogo: React.FC<IconSvgProps> = (props) => {
         className="fill-white dark:fill-black"
         d="M17.5667 9.21729H18.8111V18.2403C18.8255 19.1128 18.6 19.9726 18.159 20.7256C17.7241 21.4555 17.0968 22.0518 16.3458 22.4491C15.5717 22.8683 14.6722 23.0779 13.6473 23.0779C12.627 23.0779 11.7286 22.8672 10.9521 22.4457C10.2007 22.0478 9.5727 21.4518 9.13602 20.7223C8.6948 19.9705 8.4692 19.1118 8.48396 18.2403V9.21729H9.72854V18.1538C9.71656 18.8298 9.88417 19.4968 10.2143 20.0868C10.5362 20.6506 11.0099 21.1129 11.5814 21.421C12.1689 21.7448 12.8576 21.9067 13.6475 21.9067C14.4374 21.9067 15.1272 21.7448 15.7169 21.421C16.2895 21.1142 16.7635 20.6516 17.0844 20.0868C17.4124 19.4961 17.5788 18.8293 17.5667 18.1538V9.21729ZM23.6753 9.21729V22.845H22.4309V9.21729H23.6753Z"
       />
+    </svg>
+  );
+};
+export const AddButton: React.FC<IconSvgProps> = (props) => {
+  const { theme } = useTheme();
+  const { width, height = 40 } = props;
+  const isDarkMode = theme === "dark";
+  return (
+    <svg
+      width="209px"
+      height="209px"
+      viewBox="0 0 24 24"
+      fill="none"
+      {...props}
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <circle cx="12" cy="12" r="10" stroke-width="1.5"></circle>{" "}
+        <path
+          width={width}
+          height={height}
+          stroke={isDarkMode ? "#fff" : "#000"}
+          d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        ></path>{" "}
+      </g>
+    </svg>
+  );
+};
+
+export const MinusButton: React.FC<IconSvgProps> = (props) => {
+  const { theme } = useTheme();
+  const { width, height = 40 } = props;
+  const isDarkMode = theme === "dark";
+  return (
+    <svg
+      width="209px"
+      height="209px"
+      viewBox="0 0 24.00 24.00"
+      fill="none"
+      stroke={isDarkMode ? "#fff" : "#000"}
+      stroke-width="0.00024000000000000003"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path
+          width={width}
+          height={height}
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15.75 12C15.75 12.4142 15.4142 12.75 15 12.75H9C8.58579 12.75 8.25 12.4142 8.25 12C8.25 11.5858 8.58579 11.25 9 11.25H15C15.4142 11.25 15.75 11.5858 15.75 12Z"
+          fill={isDarkMode ? "#fff" : "#000"}
+        ></path>{" "}
+      </g>
+    </svg>
+  );
+};
+
+export const ActionMenuButton: React.FC<IconSvgProps> = (props) => {
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path
+          d="M7 12C7 13.1046 6.10457 14 5 14C3.89543 14 3 13.1046 3 12C3 10.8954 3.89543 10 5 10C6.10457 10 7 10.8954 7 12Z"
+          fill={isDarkMode ? "#fff" : "#000"}
+        ></path>{" "}
+        <path
+          d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+          fill={isDarkMode ? "#fff" : "#000"}
+        ></path>{" "}
+        <path
+          d="M21 12C21 13.1046 20.1046 14 19 14C17.8954 14 17 13.1046 17 12C17 10.8954 17.8954 10 19 10C20.1046 10 21 10.8954 21 12Z"
+          fill={isDarkMode ? "#fff" : "#000"}
+        ></path>{" "}
+      </g>
     </svg>
   );
 };

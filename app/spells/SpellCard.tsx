@@ -7,7 +7,6 @@ import { SpellsRecord } from "@/types/pocketbase-types";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { setFavorite } from "@/utils/setFavorite";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
-import { SPELL_KEY } from "@/types/keys";
 
 type Props = {
   spell: SpellsRecord;
@@ -18,15 +17,16 @@ type LocalSpellRecord = {
 };
 
 export default function SpellCard({ spell }: Props) {
-  const [localStorage, setToLocalStorage] =
-    useLocalStorage<LocalSpellRecord>(SPELL_KEY);
+  const [localStorage, setToLocalStorage] = useLocalStorage<LocalSpellRecord>(
+    "cairn-spell-selects"
+  );
   const { name, Tags, description, number } = spell;
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     if (Array.isArray(localStorage?.spellList)) {
       const isFavorite = !!localStorage?.spellList.find(
-        (item) => item.id === spell.id,
+        (item) => item.id === spell.id
       );
 
       if (isFavorite) {

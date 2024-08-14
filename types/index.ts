@@ -11,3 +11,5 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 };
 
 export type Lists = MonstersRecord[] | SpellsRecord[] | RelicsRecord[];
+
+export type ListLabels = "spellList" | "relicList" | "monsterList";

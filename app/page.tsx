@@ -48,6 +48,18 @@ export default function Home() {
           Relics
         </Link>
       </div>
+      <div>
+        <Link
+          className={buttonStyles({
+            color: "danger",
+            radius: "full",
+            variant: "shadow",
+          })}
+          href="/collections"
+        >
+          Your Collections
+        </Link>
+      </div>
     </section>
   );
 }

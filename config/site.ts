@@ -50,10 +50,15 @@ export const siteConfig = {
       label: "About",
       href: "/about",
     },
+    {
+      label: "CairnRPG",
+      href: "https://cairnrpg.com/cairn-srd/",
+    },
   ],
   links: {
     github: "https://github.com/dustatron/cairn-tools",
     docs: "https://cairnrpg.com",
     discord: "https://cairnrpg.com/discord-server/",
+    cairn: "https://cairnrpg.com/cairn-srd/",
   },
 };
