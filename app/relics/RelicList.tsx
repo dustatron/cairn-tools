@@ -46,25 +46,23 @@ export default function RelicList({ relicList }: Props) {
   };
 
   return (
-    <div className="flex flex-wrap gap-3 justify-center">
-      <Tabs aria-label="Tabs colors" color="primary" radius="sm">
-        <Tab key="search" title="Search">
-          <div className="flex justify-center">
-            <SearchInput onClear={handleClear} onSearch={handleSearch} />
-          </div>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {filteredList &&
-              filteredList.map((relic) => (
-                <RelicCard key={relic.id} relic={relic} />
-              ))}
-          </div>
-        </Tab>
-        <Tab key="random-table" title="Random Tables">
-          <RandomTables list={relicList} setList={setList}>
-            <RelicTable list={currentList} />
-          </RandomTables>
-        </Tab>
-      </Tabs>
-    </div>
+    <Tabs aria-label="Show as table to cards" color="primary" radius="sm">
+      <Tab key="search" title="Search">
+        <div className="flex justify-center">
+          <SearchInput onClear={handleClear} onSearch={handleSearch} />
+        </div>
+        <div className="flex flex-wrap gap-3 justify-center">
+          {filteredList &&
+            filteredList.map((relic) => (
+              <RelicCard key={relic.id} relic={relic} />
+            ))}
+        </div>
+      </Tab>
+      <Tab key="random-table" title="Random Tables">
+        <RandomTables list={relicList} setList={setList}>
+          <RelicTable list={currentList} />
+        </RandomTables>
+      </Tab>
+    </Tabs>
   );
 }
