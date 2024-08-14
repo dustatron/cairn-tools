@@ -20,7 +20,6 @@ import { MonstersRecord } from "@/types/pocketbase-types";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { LocalMonsterRecord } from "@/types/sharedTypes";
-import { MONSTER_KEY } from "@/types/keys";
 import { setFavorite } from "@/utils/setFavorite";
 
 type Props = {
@@ -31,7 +30,7 @@ export function MonsterCard({ monster }: Props) {
   const [liked, setLiked] = useState(false);
 
   const [localStorage, setToLocalStorage] = useLocalStorage<LocalMonsterRecord>(
-    "cairn-monster-selects"
+    "cairn-monster-selects",
   );
 
   const {
@@ -51,7 +50,7 @@ export function MonsterCard({ monster }: Props) {
   useEffect(() => {
     if (Array.isArray(localStorage?.monsterList)) {
       const isFavorite = !!localStorage?.monsterList.find(
-        (item) => item.id === monster.id
+        (item) => item.id === monster.id,
       );
 
       if (isFavorite) {
@@ -121,7 +120,7 @@ export function MonsterCard({ monster }: Props) {
               linkStyles({
                 color: "primary",
               }),
-              "data-[active=true]:text-primary data-[active=true]:font-medium"
+              "data-[active=true]:text-primary data-[active=true]:font-medium",
             )}
             href={`https://cairnrpg.com/resources/monsters/${name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
             target="_blank"

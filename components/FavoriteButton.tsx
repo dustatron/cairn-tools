@@ -1,6 +1,5 @@
 import { Button } from "@nextui-org/button";
-import { IoIosAddCircleOutline } from "react-icons/io";
-import { CiCircleMinus } from "react-icons/ci";
+
 import { AddButton, MinusButton } from "./icons";
 
 type Props = {

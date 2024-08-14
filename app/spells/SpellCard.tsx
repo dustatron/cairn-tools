@@ -18,7 +18,7 @@ type LocalSpellRecord = {
 
 export default function SpellCard({ spell }: Props) {
   const [localStorage, setToLocalStorage] = useLocalStorage<LocalSpellRecord>(
-    "cairn-spell-selects"
+    "cairn-spell-selects",
   );
   const { name, Tags, description, number } = spell;
   const [liked, setLiked] = useState(false);
@@ -26,7 +26,7 @@ export default function SpellCard({ spell }: Props) {
   useEffect(() => {
     if (Array.isArray(localStorage?.spellList)) {
       const isFavorite = !!localStorage?.spellList.find(
-        (item) => item.id === spell.id
+        (item) => item.id === spell.id,
       );
 
       if (isFavorite) {

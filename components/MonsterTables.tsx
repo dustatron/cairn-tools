@@ -1,6 +1,3 @@
-import NextLink from "next/link";
-import { link as linkStyles } from "@nextui-org/theme";
-import { Button } from "@nextui-org/button";
 import {
   Table,
   TableBody,
@@ -9,10 +6,11 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
-import clsx from "clsx";
+
+import ActionMenu from "./ActionMenu";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
-import ActionMenu from "./ActionMenu";
+
 type Props = {
   list: MonstersRecord[];
 };
@@ -37,7 +35,7 @@ export function MonsterTables({ list }: Props) {
             <TableRow key={row.id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>
-                <ActionMenu label="monsterList" item={row} />
+                <ActionMenu item={row} label="monsterList" />
               </TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.armor}</TableCell>

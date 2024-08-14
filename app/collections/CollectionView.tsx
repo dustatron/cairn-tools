@@ -6,7 +6,6 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import SpellTable from "../spells/SpellTable";
 import RelicTable from "../relics/RelicTable";
 
-import { MONSTER_KEY, SPELL_KEY, RELIC_KEY } from "@/types/keys";
 import {
   LocalMonsterRecord,
   LocalRelicsRecord,
@@ -17,11 +16,11 @@ import { MonsterTables } from "@/components/MonsterTables";
 
 export function CollectionView() {
   const [monsterStore] = useLocalStorage<LocalMonsterRecord>(
-    "cairn-monster-selects"
+    "cairn-monster-selects",
   );
   const [spellStore] = useLocalStorage<LocalSpellRecord>("cairn-spell-selects");
   const [relicStore] = useLocalStorage<LocalRelicsRecord>(
-    "cairn-relic-selects"
+    "cairn-relic-selects",
   );
 
   return (

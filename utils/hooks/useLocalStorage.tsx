@@ -7,10 +7,10 @@ export function useLocalStorage<T>(
   storageKey:
     | "cairn-monster-selects"
     | "cairn-spell-selects"
-    | "cairn-relic-selects"
+    | "cairn-relic-selects",
 ): [T, (localStore: LocalStore) => void] {
   const [storageVal, setStorageVal] = useState<T>(
-    getFromLocalStorage<T>(storageKey)
+    getFromLocalStorage<T>(storageKey),
   );
 
   const setter = (toStore: LocalStore) => {

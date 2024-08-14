@@ -6,8 +6,10 @@ import {
   DropdownTrigger,
 } from "@nextui-org/dropdown";
 import React, { useState } from "react";
-import { ActionMenuButton, AddButton, MinusButton } from "./icons";
 import { Key } from "@react-types/shared/src/key";
+
+import { ActionMenuButton, AddButton, MinusButton } from "./icons";
+
 import { setFavorite } from "@/utils/setFavorite";
 import { RelicsRecord } from "@/types/pocketbase-types";
 import { ListLabels } from "@/types";
@@ -22,7 +24,7 @@ type Props = {
 export default function ActionMenu({ item, label }: Props) {
   const [liked, setLiked] = useState(false);
   const [localStorage, setToLocalStorage] = useLocalStorage<LocalRelicsRecord>(
-    "cairn-relic-selects"
+    "cairn-relic-selects",
   );
   const isFav = localStorage?.relicList?.find((relic) => relic.id === item.id);
 
@@ -53,16 +55,17 @@ export default function ActionMenu({ item, label }: Props) {
       }
     }
   };
+
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button variant="light" className="w-10">
+        <Button className="w-10" variant="light">
           <ActionMenuButton />
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Action menu" onAction={handleAction}>
         <DropdownItem key="fav">
-          <Button variant="light" radius="full">
+          <Button radius="full" variant="light">
             {isFav ? (
               <>
                 Remove <MinusButton height={"20px"} width={"20px"} />

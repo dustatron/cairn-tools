@@ -7,7 +7,6 @@ import { RelicsRecord } from "@/types/pocketbase-types";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { setFavorite } from "@/utils/setFavorite";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
-import { RELIC_KEY } from "@/types/keys";
 
 type Props = {
   relic: RelicsRecord;
@@ -20,7 +19,7 @@ type LocalRelicRecord = {
 export default function RelicCard({ relic }: Props) {
   const [liked, setLiked] = useState(false);
   const [localStorage, setToLocalStorage] = useLocalStorage<LocalRelicRecord>(
-    "cairn-relic-selects"
+    "cairn-relic-selects",
   );
 
   const { name, charges, description, recharge } = relic;
@@ -28,7 +27,7 @@ export default function RelicCard({ relic }: Props) {
   useEffect(() => {
     if (Array.isArray(localStorage?.relicList)) {
       const isFavorite = !!localStorage?.relicList.find(
-        (item) => item.id === relic.id
+        (item) => item.id === relic.id,
       );
 
       if (isFavorite) {

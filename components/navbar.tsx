@@ -61,7 +61,7 @@ export const Navbar = () => {
                   linkStyles({
                     color: pathname === item.href ? "primary" : "foreground",
                   }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
                 href={item.href}
               >
@@ -84,9 +84,9 @@ export const Navbar = () => {
             <GithubIcon className="text-default-500" />
           </Link>
           <Link
-            color="foreground"
             isExternal
             aria-label="Cairn RPG"
+            color="foreground"
             href={siteConfig.links.cairn}
           >
             SRD
