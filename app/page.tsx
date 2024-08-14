@@ -12,7 +12,7 @@ export default function Home() {
         <br />
         <h1 className={title()}>Build encounter tables.</h1>
         <h2 className={subtitle({ class: "mt-4" })}>
-          Find for spells, relics, and monsters.
+          For finding spells, relics, and monsters.
         </h2>
       </div>
 
