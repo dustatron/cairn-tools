@@ -1,5 +1,6 @@
-import { logout } from "../actions";
 import { cookies } from "next/headers";
+
+import { logout } from "../actions";
 export default function UserData() {
   const cookie = cookies().get("pb_auth");
 

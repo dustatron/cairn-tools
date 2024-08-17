@@ -1,8 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createServerPb } from "@/utils/pocketbase";
 import { cookies } from "next/headers";
+
+import { createServerPb } from "@/utils/pocketbase";
 import { UsersResponse } from "@/types/pocketbase-types";
 
 export async function login(formData: FormData) {
@@ -55,6 +56,7 @@ export async function addUser(formData: FormData) {
   };
 
   const record = await pb.collection("users").create(data);
+
   console.log("record", record);
 }
 

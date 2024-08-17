@@ -1,8 +1,9 @@
 "use client";
-import { clientPB } from "@/utils/pocketbase";
 import { Button } from "@nextui-org/button";
-import { useEffect } from "react";
+
 import { setCookies } from "../actions";
+
+import { clientPB } from "@/utils/pocketbase";
 
 export default function DiscordLogin() {
   const pb = clientPB();

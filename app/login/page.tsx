@@ -1,8 +1,10 @@
 import { Input } from "@nextui-org/input";
-import { login } from "../actions";
 import { Divider } from "@nextui-org/divider";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
+
+import { login } from "../actions";
+
 import DiscordLogin from "./DiscordLogin";
 
 export default function Page() {
@@ -18,30 +20,32 @@ export default function Page() {
             action={login}
             className="flex justify-center flex-wrap space-y-2"
           >
-            <label>
+            <label htmlFor="email">
               E-mail
               <Input
                 isClearable
-                type="email"
-                variant="bordered"
                 className="max-w-xs"
+                type="email"
+                id="email"
+                variant="bordered"
               />
             </label>
-            <label>
+            <label htmlFor="password">
               Password
               <Input
+                id="password"
                 isClearable
+                className="max-w-xs"
                 type="password"
                 variant="bordered"
-                className="max-w-xs"
               />
             </label>
             <div className="w-full flex justify-center p-2">
               <Button
+                className="w-1/2"
+                color="primary"
                 type="submit"
                 variant="shadow"
-                color="primary"
-                className="w-1/2"
               >
                 Login
               </Button>
