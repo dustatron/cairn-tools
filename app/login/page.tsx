@@ -25,17 +25,17 @@ export default function Page() {
               <Input
                 isClearable
                 className="max-w-xs"
-                type="email"
                 id="email"
+                type="email"
                 variant="bordered"
               />
             </label>
             <label htmlFor="password">
               Password
               <Input
-                id="password"
                 isClearable
                 className="max-w-xs"
+                id="password"
                 type="password"
                 variant="bordered"
               />
