@@ -24,7 +24,7 @@ type Props = {
 export default function ActionMenu({ item, label }: Props) {
   const [liked, setLiked] = useState(false);
   const [localStorage, setToLocalStorage] = useLocalStorage<LocalRelicsRecord>(
-    "cairn-relic-selects",
+    "cairn-relic-selects"
   );
   const isFav = localStorage?.relicList?.find((relic) => relic.id === item.id);
 
@@ -78,7 +78,7 @@ export default function ActionMenu({ item, label }: Props) {
           </Button>
         </DropdownItem>
         <DropdownItem key="source">
-          <Button variant="light">Souce</Button>
+          <Button variant="light">Source</Button>
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
