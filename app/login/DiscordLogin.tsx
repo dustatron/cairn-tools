@@ -5,7 +5,7 @@ import { setCookies } from "../actions";
 
 import { clientPB } from "@/utils/pocketbase";
 
-export default function DiscordLogin() {
+export default function eDiscordLogin() {
   const pb = clientPB();
   const discordLogin = async () => {
     // Make sure to register https://pocket.pdxmccord.com/api/oauth2-redirect as redirect url.
@@ -18,5 +18,9 @@ export default function DiscordLogin() {
     }
   };
 
-  return <Button onClick={discordLogin}>Discord</Button>;
+  return (
+    <Button size="md" onClick={discordLogin} variant="shadow" color="secondary">
+      Discord
+    </Button>
+  );
 }

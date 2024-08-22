@@ -61,6 +61,8 @@ export async function addUser(formData: FormData) {
 }
 
 export async function logout() {
+  const pocket = createServerPb();
+  pocket.authStore.clear();
   cookies().delete("pb_auth");
   redirect("/");
 }

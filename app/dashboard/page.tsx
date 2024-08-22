@@ -1,11 +1,13 @@
+import getUserCookie from "@/utils/getUserCookie";
 import UserData from "./UserData";
+import { cookies } from "next/headers";
 
 export default function DashboardPage() {
+  const model = getUserCookie();
   return (
     <main>
-      <p>This is the dashboard. Only logged-in users can view this route</p>
-      <p>Logged-in user: </p>
-      <UserData />
+      <h1 className="text-2xl">Logged-in user: </h1>
+      <UserData userData={model} />
     </main>
   );
 }

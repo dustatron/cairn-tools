@@ -1,4 +1,3 @@
-"use client";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -8,7 +7,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { usePathname } from "next/navigation";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
@@ -20,9 +18,11 @@ import { text } from "@/components/primitives";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, DiscordIcon, SearchIcon, Logo } from "@/components/icons";
+import UserMenu from "./UserMenu/UserMenu";
+import getUserCookie from "@/utils/getUserCookie";
 
 export const Navbar = () => {
-  const pathname = usePathname();
+  const user = getUserCookie();
   const searchInput = (
     <Input
       aria-label="Search"
@@ -59,9 +59,9 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({
-                    color: pathname === item.href ? "primary" : "foreground",
+                    color: "foreground",
                   }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
                 href={item.href}
               >
@@ -77,6 +77,8 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
+          <ThemeSwitch />
+
           <Link isExternal aria-label="Discord" href={siteConfig.links.discord}>
             <DiscordIcon className="text-default-500" />
           </Link>
@@ -91,7 +93,7 @@ export const Navbar = () => {
           >
             SRD
           </Link>
-          <ThemeSwitch />
+          <UserMenu />
         </NavbarItem>
         {/* <NavbarItem className="hidden md:flex">{searchInput}</NavbarItem> */}
       </NavbarContent>
@@ -107,17 +109,18 @@ export const Navbar = () => {
       <NavbarMenu>
         {searchInput}
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={pathname === item.href ? "primary" : "foreground"}
-                href={item.href}
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+          {siteConfig.navMenuItems.map((item, index) => {
+            if (user && item.label === "Login") {
+              return null;
+            }
+            return (
+              <NavbarMenuItem key={`${item}-${index}`}>
+                <Link color={"foreground"} href={item.href} size="lg">
+                  {item.label}
+                </Link>
+              </NavbarMenuItem>
+            );
+          })}
         </div>
       </NavbarMenu>
     </NextUINavbar>

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTheme } from "next-themes";
 
 import { IconSvgProps } from "@/types";
 
@@ -102,6 +101,36 @@ export const GithubIcon: React.FC<IconSvgProps> = ({
         fill="currentColor"
         fillRule="evenodd"
       />
+    </svg>
+  );
+};
+export const UserIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+      fill="none"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6C13.6569 6 15 7.34315 15 9ZM12 20.5C13.784 20.5 15.4397 19.9504 16.8069 19.0112C17.4108 18.5964 17.6688 17.8062 17.3178 17.1632C16.59 15.8303 15.0902 15 11.9999 15C8.90969 15 7.40997 15.8302 6.68214 17.1632C6.33105 17.8062 6.5891 18.5963 7.19296 19.0111C8.56018 19.9503 10.2159 20.5 12 20.5Z"
+          fill="currentColor"
+        ></path>
+      </g>
     </svg>
   );
 };
@@ -231,9 +260,7 @@ export const NextUILogo: React.FC<IconSvgProps> = (props) => {
   );
 };
 export const AddButton: React.FC<IconSvgProps> = (props) => {
-  const { theme } = useTheme();
   const { width, height = 40 } = props;
-  const isDarkMode = theme === "dark";
 
   return (
     <svg
@@ -254,7 +281,7 @@ export const AddButton: React.FC<IconSvgProps> = (props) => {
         <path
           d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
           height={height}
-          stroke={isDarkMode ? "#fff" : "#000"}
+          stroke="currentColor"
           strokeLinecap="round"
           strokeWidth="1.5"
           width={width}
@@ -265,15 +292,13 @@ export const AddButton: React.FC<IconSvgProps> = (props) => {
 };
 
 export const MinusButton: React.FC<IconSvgProps> = (props) => {
-  const { theme } = useTheme();
   const { width, height = 40 } = props;
-  const isDarkMode = theme === "dark";
 
   return (
     <svg
       fill="none"
       height="209px"
-      stroke={isDarkMode ? "#fff" : "#000"}
+      stroke="currentColor"
       strokeWidth="0.00024000000000000003"
       viewBox="0 0 24.00 24.00"
       width="209px"
@@ -289,7 +314,7 @@ export const MinusButton: React.FC<IconSvgProps> = (props) => {
         <path
           clipRule="evenodd"
           d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15.75 12C15.75 12.4142 15.4142 12.75 15 12.75H9C8.58579 12.75 8.25 12.4142 8.25 12C8.25 11.5858 8.58579 11.25 9 11.25H15C15.4142 11.25 15.75 11.5858 15.75 12Z"
-          fill={isDarkMode ? "#fff" : "#000"}
+          fill="currentColor"
           fillRule="evenodd"
           height={height}
           width={width}
@@ -299,10 +324,40 @@ export const MinusButton: React.FC<IconSvgProps> = (props) => {
   );
 };
 
-export const ActionMenuButton: React.FC<IconSvgProps> = (props) => {
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+export const LogoutIcon: React.FC<IconSvgProps> = (props) => {
+  const { width, height = 15 } = props;
+  return (
+    <svg
+      height={height}
+      width={width}
+      viewBox="0 0 12 12"
+      enable-background="new 0 0 12 12"
+      id="Слой_1"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="#000000"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <polygon
+          fill="currentColor"
+          points="9,2 9,0 1,0 1,12 9,12 9,10 8,10 8,11 2,11 2,1 8,1 8,2 "
+        ></polygon>
+        <polygon
+          fill="currentColor"
+          points="8.2929688,3.2929688 7.5859375,4 9.0859375,5.5 5,5.5 5,6.5 9.0859375,6.5 7.5859375,8 8.2929688,8.7070313 11,6 "
+        ></polygon>
+      </g>
+    </svg>
+  );
+};
 
+export const ActionMenuButton: React.FC<IconSvgProps> = (props) => {
   return (
     <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -315,15 +370,15 @@ export const ActionMenuButton: React.FC<IconSvgProps> = (props) => {
         {" "}
         <path
           d="M7 12C7 13.1046 6.10457 14 5 14C3.89543 14 3 13.1046 3 12C3 10.8954 3.89543 10 5 10C6.10457 10 7 10.8954 7 12Z"
-          fill={isDarkMode ? "#fff" : "#000"}
+          fill="currentColor"
         />{" "}
         <path
           d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
-          fill={isDarkMode ? "#fff" : "#000"}
+          fill="currentColor"
         />{" "}
         <path
           d="M21 12C21 13.1046 20.1046 14 19 14C17.8954 14 17 13.1046 17 12C17 10.8954 17.8954 10 19 10C20.1046 10 21 10.8954 21 12Z"
-          fill={isDarkMode ? "#fff" : "#000"}
+          fill="currentColor"
         />{" "}
       </g>
     </svg>

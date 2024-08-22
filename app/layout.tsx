@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { CookiesProvider } from "next-client-cookies/server";
 
 import { Providers } from "./providers";
 
@@ -37,18 +38,20 @@ export default function RootLayout({
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <main className="container mx-auto max-w-7xl pt-2 px-6 flex-grow">
-              {children}
-            </main>
-            <footer className="w-full flex items-center justify-center py-3" />
-          </div>
-        </Providers>
+        <CookiesProvider>
+          <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+            <div className="relative flex flex-col h-screen">
+              <Navbar />
+              <main className="container mx-auto max-w-7xl pt-2 px-6 flex-grow">
+                {children}
+              </main>
+              <footer className="w-full flex items-center justify-center py-3" />
+            </div>
+          </Providers>
+        </CookiesProvider>
       </body>
     </html>
   );

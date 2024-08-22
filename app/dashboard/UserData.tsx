@@ -1,21 +1,32 @@
 import { cookies } from "next/headers";
+import SignoutButton from "@/components/SignoutButton";
 
-import { logout } from "../actions";
-export default function UserData() {
-  const cookie = cookies().get("pb_auth");
+export type UserModel = {
+  avatar: string;
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  email: string;
+  emailVisibility: boolean;
+  id: string;
+  name: string;
+  updated: string;
+  username: string;
+  verified: boolean;
+};
 
-  // This never happens because of the middleware,
-  // but we must make typescript happy
-  if (!cookie) throw new Error("Not logged in");
+type Props = {
+  userData: UserModel;
+};
 
-  const { model } = JSON.parse(cookie.value);
-
+export default function UserData({ userData }: Props) {
   return (
     <>
-      <pre>{JSON.stringify(model, null, 2)}</pre>
-      <form action={logout}>
-        <button type="submit">logout</button>
-      </form>
+      <p>{userData.id}</p>
+      <p>{userData.email}</p>
+      <p>{userData.collectionName}</p>
+
+      <SignoutButton />
     </>
   );
 }
