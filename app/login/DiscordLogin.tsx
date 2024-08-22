@@ -19,7 +19,7 @@ export default function eDiscordLogin() {
   };
 
   return (
-    <Button size="md" onClick={discordLogin} variant="shadow" color="secondary">
+    <Button color="secondary" size="md" variant="shadow" onClick={discordLogin}>
       Discord
     </Button>
   );

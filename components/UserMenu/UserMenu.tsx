@@ -1,6 +1,8 @@
-import getUserCookie from "@/utils/getUserCookie";
 import SignoutButton from "../SignoutButton";
+
 import { Menu } from "./Menu";
+
+import getUserCookie from "@/utils/getUserCookie";
 
 export default async function UserMenu() {
   const user = getUserCookie();

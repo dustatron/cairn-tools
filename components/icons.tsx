@@ -112,24 +112,24 @@ export const UserIcon: React.FC<IconSvgProps> = ({
 }) => {
   return (
     <svg
+      fill="none"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
-      fill="none"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      ></g>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <g id="SVGRepo_iconCarrier">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          clipRule="evenodd"
           d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6C13.6569 6 15 7.34315 15 9ZM12 20.5C13.784 20.5 15.4397 19.9504 16.8069 19.0112C17.4108 18.5964 17.6688 17.8062 17.3178 17.1632C16.59 15.8303 15.0902 15 11.9999 15C8.90969 15 7.40997 15.8302 6.68214 17.1632C6.33105 17.8062 6.5891 18.5963 7.19296 19.0111C8.56018 19.9503 10.2159 20.5 12 20.5Z"
           fill="currentColor"
-        ></path>
+          fillRule="evenodd"
+        />
       </g>
     </svg>
   );
@@ -326,32 +326,33 @@ export const MinusButton: React.FC<IconSvgProps> = (props) => {
 
 export const LogoutIcon: React.FC<IconSvgProps> = (props) => {
   const { width, height = 15 } = props;
+
   return (
     <svg
+      enableBackground="new 0 0 12 12"
+      fill="#000000"
       height={height}
-      width={width}
-      viewBox="0 0 12 12"
-      enable-background="new 0 0 12 12"
       id="Слой_1"
       version="1.1"
+      viewBox="0 0 12 12"
+      width={width}
       xmlns="http://www.w3.org/2000/svg"
-      fill="#000000"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      ></g>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <g id="SVGRepo_iconCarrier">
         <polygon
           fill="currentColor"
           points="9,2 9,0 1,0 1,12 9,12 9,10 8,10 8,11 2,11 2,1 8,1 8,2 "
-        ></polygon>
+        />
         <polygon
           fill="currentColor"
           points="8.2929688,3.2929688 7.5859375,4 9.0859375,5.5 5,5.5 5,6.5 9.0859375,6.5 7.5859375,8 8.2929688,8.7070313 11,6 "
-        ></polygon>
+        />
       </g>
     </svg>
   );

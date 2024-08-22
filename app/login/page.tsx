@@ -26,10 +26,10 @@ export default function Page() {
                   isClearable
                   className="max-3xl"
                   id="email"
-                  type="email"
-                  variant="bordered"
                   placeholder="Email"
                   size="lg"
+                  type="email"
+                  variant="bordered"
                 />
               </div>
               <div className="w-full flex justify-center py-2">
@@ -37,10 +37,10 @@ export default function Page() {
                   isClearable
                   className="max-3xl"
                   id="password"
-                  type="password"
-                  variant="bordered"
                   placeholder="Password"
                   size="lg"
+                  type="password"
+                  variant="bordered"
                 />
               </div>
               <div className="w-full flex justify-center p-2">

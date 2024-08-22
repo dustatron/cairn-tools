@@ -1,6 +1,8 @@
-import { logout } from "@/app/actions";
 import { Button } from "@nextui-org/button";
+
 import { LogoutIcon } from "./icons";
+
+import { logout } from "@/app/actions";
 
 type Props = {
   style?:

@@ -14,11 +14,12 @@ import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 
+import UserMenu from "./UserMenu/UserMenu";
+
 import { text } from "@/components/primitives";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, DiscordIcon, SearchIcon, Logo } from "@/components/icons";
-import UserMenu from "./UserMenu/UserMenu";
 import getUserCookie from "@/utils/getUserCookie";
 
 export const Navbar = () => {
@@ -61,7 +62,7 @@ export const Navbar = () => {
                   linkStyles({
                     color: "foreground",
                   }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
                 href={item.href}
               >
@@ -113,6 +114,7 @@ export const Navbar = () => {
             if (user && item.label === "Login") {
               return null;
             }
+
             return (
               <NavbarMenuItem key={`${item}-${index}`}>
                 <Link color={"foreground"} href={item.href} size="lg">

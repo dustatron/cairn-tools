@@ -9,5 +9,6 @@ export default function getUserCookie() {
   }
 
   const { model } = JSON.parse(cookie.value);
+
   return model;
 }

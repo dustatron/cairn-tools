@@ -1,9 +1,10 @@
-import getUserCookie from "@/utils/getUserCookie";
 import UserData from "./UserData";
-import { cookies } from "next/headers";
+
+import getUserCookie from "@/utils/getUserCookie";
 
 export default function DashboardPage() {
   const model = getUserCookie();
+
   return (
     <main>
       <h1 className="text-2xl">Logged-in user: </h1>

@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import SignoutButton from "@/components/SignoutButton";
 
 export type UserModel = {
