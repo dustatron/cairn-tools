@@ -1,3 +1,4 @@
+"use server";
 import SignoutButton from "../SignoutButton";
 
 import { Menu } from "./Menu";

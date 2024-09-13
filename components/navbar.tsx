@@ -23,6 +23,8 @@ import { GithubIcon, DiscordIcon, SearchIcon, Logo } from "@/components/icons";
 import getUserCookie from "@/utils/getUserCookie";
 
 export const Navbar = () => {
+  const isShowingAuth = process.env.ALLOW_USERS;
+
   const user = getUserCookie();
   const searchInput = (
     <Input
@@ -62,7 +64,7 @@ export const Navbar = () => {
                   linkStyles({
                     color: "foreground",
                   }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
                 href={item.href}
               >
@@ -94,7 +96,7 @@ export const Navbar = () => {
           >
             SRD
           </Link>
-          <UserMenu />
+          {isShowingAuth && <UserMenu />}
         </NavbarItem>
         {/* <NavbarItem className="hidden md:flex">{searchInput}</NavbarItem> */}
       </NavbarContent>
