@@ -96,7 +96,7 @@ export const Navbar = () => {
           >
             SRD
           </Link>
-          {isShowingAuth && <UserMenu />}
+          {/* {isShowingAuth && <UserMenu />} */}
         </NavbarItem>
         {/* <NavbarItem className="hidden md:flex">{searchInput}</NavbarItem> */}
       </NavbarContent>
