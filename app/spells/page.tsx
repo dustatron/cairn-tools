@@ -1,18 +1,16 @@
 import { SpellLister } from "./SpellLister";
-
 import { createServerPb } from "@/utils/pocketbase";
 import { title } from "@/components/primitives";
 
 const getSpellList = async () => {
   const pb = await createServerPb();
-  const monsterList = await pb
+  const spellList = await pb
     .collection("spells")
-    .getFullList({ sort: "-created" });
-
-  return monsterList;
+    .getFullList({ sort: "number" });
+  return spellList;
 };
 
-export default async function PricingPage() {
+export default async function SpellPage() {
   const spellList = await getSpellList();
 
   return (

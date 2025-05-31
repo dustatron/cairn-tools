@@ -10,6 +10,7 @@ import {
 
 import { RelicsRecord } from "@/types/pocketbase-types";
 import ActionMenu from "@/components/ActionMenu";
+import { Button } from "@nextui-org/button";
 
 type Props = {
   list: RelicsRecord[];

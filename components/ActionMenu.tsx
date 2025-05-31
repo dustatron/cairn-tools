@@ -1,86 +1,63 @@
-import { Button } from "@nextui-org/button";
 import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@nextui-org/dropdown";
+  MonstersRecord,
+  RelicsRecord,
+  SpellsRecord,
+} from "@/types/pocketbase-types";
 import React, { useState } from "react";
-import { Key } from "@react-types/shared/src/key";
-
-import { ActionMenuButton, AddButton, MinusButton } from "./icons";
 
 import { setFavorite } from "@/utils/setFavorite";
-import { RelicsRecord } from "@/types/pocketbase-types";
 import { ListLabels } from "@/types";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
-import { LocalRelicsRecord } from "@/types/sharedTypes";
+import {
+  LocalMonsterRecord,
+  LocalRelicsRecord,
+  LocalSpellRecord,
+} from "@/types/sharedTypes";
+import { FavoriteButton } from "./FavoriteButton";
 
 type Props = {
-  item: RelicsRecord;
+  item: RelicsRecord | MonstersRecord | SpellsRecord;
   label: ListLabels;
 };
 
 export default function ActionMenu({ item, label }: Props) {
   const [liked, setLiked] = useState(false);
-  const [localStorage, setToLocalStorage] = useLocalStorage<LocalRelicsRecord>(
-    "cairn-relic-selects",
-  );
-  const isFav = localStorage?.relicList?.find((relic) => relic.id === item.id);
+  const [localStorage, setToLocalStorage] = useLocalStorage<
+    LocalRelicsRecord | LocalMonsterRecord | LocalSpellRecord
+  >("cairn-relic-selects");
+
+  const getFavStatus = (itemLabel: ListLabels): boolean => {
+    if (itemLabel === "monsterList") {
+      return !!(localStorage as LocalMonsterRecord).monsterList?.find(
+        (monster) => monster.id === item.id
+      );
+    }
+    if (itemLabel === "relicList") {
+      return !!(localStorage as LocalRelicsRecord).relicList?.find(
+        (relic) => relic.id === item.id
+      );
+    }
+    if (itemLabel === "spellList") {
+      return !!(localStorage as LocalSpellRecord).spellList?.find(
+        (spell) => spell.id === item.id
+      );
+    }
+    return true;
+  };
+
+  const isFav = getFavStatus(label);
 
   const toggleFavorite = () => {
     const result = setFavorite({
       currentLocalStorage: localStorage,
       item,
       label,
-      liked: !!isFav,
+      liked: isFav,
       setLiked,
     });
 
     setToLocalStorage(result);
   };
 
-  const handleAction = (key: Key) => {
-    if (key === "fav") {
-      toggleFavorite();
-    } else if (key === "source" && location) {
-      if (label === "relicList") {
-        location.href = "https://cairnrpg.com/resources/more-relics";
-      } else if (label === "spellList") {
-        location.href = "https://cairnrpg.com/resources/more-spellbooks/";
-      } else if (label === "monsterList") {
-        location.href =
-          "https://cairnrpg.com/resources/monsters/" +
-          item?.name?.replaceAll(" ", "-").toLocaleLowerCase();
-      }
-    }
-  };
-
-  return (
-    <Dropdown>
-      <DropdownTrigger>
-        <Button className="w-10" variant="light">
-          <ActionMenuButton />
-        </Button>
-      </DropdownTrigger>
-      <DropdownMenu aria-label="Action menu" onAction={handleAction}>
-        <DropdownItem key="fav">
-          <Button radius="full" variant="light">
-            {isFav ? (
-              <>
-                Remove <MinusButton height={"20px"} width={"20px"} />
-              </>
-            ) : (
-              <>
-                Add <AddButton />
-              </>
-            )}
-          </Button>
-        </DropdownItem>
-        <DropdownItem key="source">
-          <Button variant="light">Source</Button>
-        </DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
-  );
+  return <FavoriteButton isFav={isFav} setFav={toggleFavorite} />;
 }
