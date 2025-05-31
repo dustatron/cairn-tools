@@ -9,12 +9,12 @@ export function AddMonster() {
   const addMonsterToList = async () => {
     const pb = await clientPB();
 
-    monsters.forEach((monster) => {
+    for (let i = 0; i < monsters.length; i++) {
       const {
         title,
         stats: { armor, attack, dex, hp, str, wil },
         details,
-      } = monster;
+      } = monsters[i];
       const data = {
         name: title,
         hp,
@@ -28,21 +28,21 @@ export function AddMonster() {
         detail2: details[2],
         detail3: details[3],
       };
-
-      pb.collection("monsters")
+      await pb
+        .collection("monsters")
         .create(data)
         .then((res) => {
           console.log("added", title);
         })
         .catch((err) => console.log("error", err));
-    });
+    }
   };
 
   return (
     <div>
       {" "}
       original list length = {monsters.length}
-      <Button onClick={addMonsterToList}>Add Monster</Button>{" "}
+      <Button onClick={addMonsterToList}>Add Monsters</Button>{" "}
     </div>
   );
 }

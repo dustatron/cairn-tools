@@ -2,13 +2,13 @@ import { MonsterLister } from "./MonsterLister";
 
 import { title } from "@/components/primitives";
 import { createServerPb } from "@/utils/pocketbase";
+import { AddMonster } from "./AddMonster";
 
 const getMonsterList = async () => {
   const pb = await createServerPb();
   const monsterList = await pb
     .collection("monsters")
     .getFullList({ sort: "-created" });
-
   return monsterList;
 };
 
