@@ -19,7 +19,7 @@ export default async function MonsterPage() {
     <div>
       <h1 className={title()}>Monster List</h1>
       <div className="mt-2">
-        <MonsterLister list={monsterList} />
+        {monsterList.length && <MonsterLister list={monsterList} />}
       </div>
     </div>
   );
