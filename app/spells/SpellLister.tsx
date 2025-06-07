@@ -52,6 +52,17 @@ export function SpellLister({ list }: Props) {
 
   return (
     <Tabs aria-label="Tabs colors" color="primary" radius="sm">
+      <Tab key="collection" title="Collection">
+        {localStorage?.spellList?.length ? (
+          <SpellTable
+            list={localStorage?.spellList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
+        ) : (
+          <div>No Spells in your collection</div>
+        )}
+      </Tab>
       <Tab key="search" title="Search">
         <div className="flex justify-center">
           <SearchInput onClear={handleClear} onSearch={handleSearch} />
@@ -75,17 +86,6 @@ export function SpellLister({ list }: Props) {
             setToLocalStorage={setToLocalStorage}
           />
         </RandomTables>
-      </Tab>
-      <Tab key="collection" title="Collection">
-        {localStorage?.spellList.length ? (
-          <SpellTable
-            list={localStorage?.spellList}
-            localStorage={localStorage}
-            setToLocalStorage={setToLocalStorage}
-          />
-        ) : (
-          <div>No Spells in your collection</div>
-        )}
       </Tab>
     </Tabs>
   );

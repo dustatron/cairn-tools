@@ -8,6 +8,7 @@ import { FavoriteButton } from "@/components/FavoriteButton";
 import { getFavoritesUpdate } from "@/utils/setFavorite";
 import { LocalStore } from "@/utils/hooks/useLocalStorage";
 import { LocalRelicsRecord } from "@/types/sharedTypes";
+import ActionMenu from "@/components/ActionMenu";
 
 type Props = {
   relic: RelicsRecord;
@@ -36,19 +37,6 @@ export default function RelicCard({
     }
   }, [localStorage?.relicList]);
 
-  const toggleFavorite = () => {
-    const toggleLiked = !liked;
-    setLiked(toggleLiked);
-
-    const result = getFavoritesUpdate({
-      currentList: localStorage,
-      item: relic,
-      label: "relicList",
-      likedUpdate: toggleLiked,
-    });
-    setToLocalStorage(result);
-  };
-
   return (
     <Card className="w-[500px] border-1 border-gray-700" radius="sm">
       <CardHeader className="flex gap-3">
@@ -59,7 +47,12 @@ export default function RelicCard({
               Charges: {charges}
             </p>
           </div>
-          <FavoriteButton isFav={liked} handleOnFav={toggleFavorite} />
+          <ActionMenu
+            item={relic}
+            label="relicList"
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
         </div>
       </CardHeader>
       <Divider />

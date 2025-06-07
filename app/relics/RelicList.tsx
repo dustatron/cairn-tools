@@ -52,6 +52,17 @@ export default function RelicList({ relicList }: Props) {
 
   return (
     <Tabs aria-label="Show as table to cards" color="primary" radius="sm">
+      <Tab key="collection" title="Collection">
+        {localStorage?.relicList?.length ? (
+          <RelicTable
+            list={localStorage?.relicList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
+        ) : (
+          <div>No Relics in your collection</div>
+        )}
+      </Tab>
       <Tab key="search" title="Search">
         <div className="flex justify-center">
           <SearchInput onClear={handleClear} onSearch={handleSearch} />
@@ -76,17 +87,6 @@ export default function RelicList({ relicList }: Props) {
             setToLocalStorage={setToLocalStorage}
           />
         </RandomTables>
-      </Tab>
-      <Tab key="collection" title="Collection">
-        {localStorage?.relicList?.length ? (
-          <RelicTable
-            list={localStorage?.relicList}
-            localStorage={localStorage}
-            setToLocalStorage={setToLocalStorage}
-          />
-        ) : (
-          <div>No Relics in your collection</div>
-        )}
       </Tab>
     </Tabs>
   );

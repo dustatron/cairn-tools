@@ -69,7 +69,7 @@ export default function ActionMenu({
         display: "flex",
         justifyContent: "start",
         alignItems: "center",
-        paddingTop: "20px",
+        paddingTop: "15px",
       }}
     >
       <FavoriteButton isFav={isFav} handleOnFav={toggleFavorite} />

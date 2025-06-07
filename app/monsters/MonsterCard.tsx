@@ -21,6 +21,7 @@ import { FavoriteButton } from "@/components/FavoriteButton";
 import { LocalMonsterRecord } from "@/types/sharedTypes";
 import { LocalStore } from "@/utils/hooks/useLocalStorage";
 import { getFavoritesUpdate } from "@/utils/setFavorite";
+import ActionMenu from "@/components/ActionMenu";
 
 type Props = {
   monster: MonstersRecord;
@@ -61,18 +62,6 @@ export function MonsterCard({
     }
   }, [localStorage?.monsterList]);
 
-  const toggleFavorite = () => {
-    const toggleLiked = !liked;
-    setLiked(toggleLiked);
-    const result = getFavoritesUpdate({
-      currentList: localStorage,
-      item: monster,
-      label: "monsterList",
-      likedUpdate: toggleLiked,
-    });
-    setToLocalStorage(result);
-  };
-
   return (
     <Card className="w-[500px] border-1 border-gray-700" radius="sm">
       <CardHeader className="flex gap-3">
@@ -83,7 +72,12 @@ export function MonsterCard({
               Attack: {attack}
             </p>
           </div>
-          <FavoriteButton isFav={liked} handleOnFav={toggleFavorite} />
+          <ActionMenu
+            item={monster}
+            label="monsterList"
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
         </div>
       </CardHeader>
       <Divider />

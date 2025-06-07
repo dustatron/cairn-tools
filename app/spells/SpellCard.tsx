@@ -8,6 +8,7 @@ import { FavoriteButton } from "@/components/FavoriteButton";
 import { getFavoritesUpdate } from "@/utils/setFavorite";
 import { LocalStore, useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { LocalSpellRecord } from "@/types/sharedTypes";
+import ActionMenu from "@/components/ActionMenu";
 
 type Props = {
   spell: SpellsRecord;
@@ -35,19 +36,6 @@ export default function SpellCard({
     }
   }, [localStorage?.spellList]);
 
-  const toggleFavorite = () => {
-    const toggleLiked = !liked;
-    setLiked(toggleLiked);
-    const result = getFavoritesUpdate({
-      currentList: localStorage,
-      item: spell,
-      label: "spellList",
-      likedUpdate: toggleLiked,
-    });
-
-    setToLocalStorage(result);
-  };
-
   return (
     <Card className="w-[500px] border-1 border-gray-700" radius="sm">
       <CardHeader className="flex gap-3">
@@ -55,7 +43,12 @@ export default function SpellCard({
           <div className="flex flex-col">
             <p className="text-lg text-left">{name}</p>
           </div>
-          <FavoriteButton isFav={liked} handleOnFav={toggleFavorite} />
+          <ActionMenu
+            item={spell}
+            label="spellList"
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
         </div>
       </CardHeader>
       <Divider />

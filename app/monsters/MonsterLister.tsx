@@ -51,6 +51,17 @@ export function MonsterLister({ list }: Props) {
 
   return (
     <Tabs aria-label="Tabs colors" color="primary" radius="sm">
+      <Tab key="collection" title="Collection">
+        {localStorage?.monsterList.length ? (
+          <MonsterTables
+            list={localStorage?.monsterList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
+        ) : (
+          <div>No Monsters in your collection</div>
+        )}
+      </Tab>
       <Tab key="search" title="Search">
         <div className="justify-center">
           <SearchInput onClear={handleClear} onSearch={handleSearch} />
@@ -74,17 +85,6 @@ export function MonsterLister({ list }: Props) {
             setToLocalStorage={setToLocalStorage}
           />
         </RandomTables>
-      </Tab>
-      <Tab key="collection" title="Collection">
-        {localStorage?.monsterList.length ? (
-          <MonsterTables
-            list={localStorage?.monsterList}
-            localStorage={localStorage}
-            setToLocalStorage={setToLocalStorage}
-          />
-        ) : (
-          <div>No Monsters in your collection</div>
-        )}
       </Tab>
     </Tabs>
   );
