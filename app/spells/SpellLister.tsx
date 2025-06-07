@@ -11,11 +11,16 @@ import SpellTable from "./SpellTable";
 import { SpellsRecord } from "@/types/pocketbase-types";
 import { Lists } from "@/types";
 import { RandomTables } from "@/components/RandomTables";
+import { LocalSpellRecord } from "@/types/sharedTypes";
+import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 
 type Props = {
   list: SpellsRecord[];
 };
 export function SpellLister({ list }: Props) {
+  const [localStorage, setToLocalStorage] = useLocalStorage<LocalSpellRecord>(
+    "cairn-spell-selects"
+  );
   const [filteredList, setFilteredList] = useState<SpellsRecord[]>(list);
   const [currentList, setList] = useState<Lists>([]);
 
@@ -53,14 +58,30 @@ export function SpellLister({ list }: Props) {
         </div>
         <div className="flex flex-wrap gap-3 justify-center">
           {filteredList.map((spell) => (
-            <SpellCard key={spell.id} spell={spell} />
+            <SpellCard
+              key={spell.id}
+              spell={spell}
+              localStorage={localStorage}
+              setToLocalStorage={setToLocalStorage}
+            />
           ))}
         </div>
       </Tab>
       <Tab key="random-table" title="Random Tables">
         <RandomTables list={list} setList={setList}>
-          <SpellTable list={currentList} />
+          <SpellTable
+            list={currentList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
         </RandomTables>
+      </Tab>
+      <Tab key="collection" title="Collection">
+        <SpellTable
+          list={localStorage.spellList}
+          localStorage={localStorage}
+          setToLocalStorage={setToLocalStorage}
+        />
       </Tab>
     </Tabs>
   );

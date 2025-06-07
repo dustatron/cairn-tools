@@ -18,20 +18,22 @@ import React, { useEffect, useState } from "react";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
 import { FavoriteButton } from "@/components/FavoriteButton";
-import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { LocalMonsterRecord } from "@/types/sharedTypes";
-import { setFavorite } from "@/utils/setFavorite";
+import { LocalStore } from "@/utils/hooks/useLocalStorage";
+import { getFavoritesUpdate } from "@/utils/setFavorite";
 
 type Props = {
   monster: MonstersRecord;
+  localStorage: LocalMonsterRecord;
+  setToLocalStorage: (localStore: LocalStore) => void;
 };
 
-export function MonsterCard({ monster }: Props) {
+export function MonsterCard({
+  monster,
+  localStorage,
+  setToLocalStorage,
+}: Props) {
   const [liked, setLiked] = useState(false);
-
-  const [localStorage, setToLocalStorage] = useLocalStorage<LocalMonsterRecord>(
-    "cairn-monster-selects",
-  );
 
   const {
     name,
@@ -50,24 +52,24 @@ export function MonsterCard({ monster }: Props) {
   useEffect(() => {
     if (Array.isArray(localStorage?.monsterList)) {
       const isFavorite = !!localStorage?.monsterList.find(
-        (item) => item.id === monster.id,
+        (item) => item.id === monster.id
       );
 
-      if (isFavorite) {
+      if (!!isFavorite) {
         setLiked(isFavorite);
       }
     }
   }, [localStorage?.monsterList]);
 
   const toggleFavorite = () => {
-    const result = setFavorite({
-      currentLocalStorage: localStorage,
+    const toggleLiked = !liked;
+    setLiked(toggleLiked);
+    const result = getFavoritesUpdate({
+      currentList: localStorage,
       item: monster,
       label: "monsterList",
-      liked,
-      setLiked,
+      likedUpdate: toggleLiked,
     });
-
     setToLocalStorage(result);
   };
 
@@ -81,7 +83,7 @@ export function MonsterCard({ monster }: Props) {
               Attack: {attack}
             </p>
           </div>
-          <FavoriteButton isFav={liked} setFav={toggleFavorite} />
+          <FavoriteButton isFav={liked} handleOnFav={toggleFavorite} />
         </div>
       </CardHeader>
       <Divider />
@@ -120,9 +122,11 @@ export function MonsterCard({ monster }: Props) {
               linkStyles({
                 color: "primary",
               }),
-              "data-[active=true]:text-primary data-[active=true]:font-medium",
+              "data-[active=true]:text-primary data-[active=true]:font-medium"
             )}
-            href={`https://cairnrpg.com/resources/monsters/${name?.replaceAll(" ", "-").toLocaleLowerCase()}`}
+            href={`https://cairnrpg.com/resources/monsters/${name
+              ?.replaceAll(" ", "-")
+              .toLocaleLowerCase()}`}
             target="_blank"
           >
             <Button variant="faded">Source</Button>

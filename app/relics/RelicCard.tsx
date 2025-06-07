@@ -5,29 +5,29 @@ import { useEffect, useState } from "react";
 
 import { RelicsRecord } from "@/types/pocketbase-types";
 import { FavoriteButton } from "@/components/FavoriteButton";
-import { setFavorite } from "@/utils/setFavorite";
-import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
+import { getFavoritesUpdate } from "@/utils/setFavorite";
+import { LocalStore } from "@/utils/hooks/useLocalStorage";
+import { LocalRelicsRecord } from "@/types/sharedTypes";
 
 type Props = {
   relic: RelicsRecord;
+  localStorage: LocalRelicsRecord;
+  setToLocalStorage: (localStore: LocalStore) => void;
 };
 
-type LocalRelicRecord = {
-  relicList: RelicsRecord[];
-};
-
-export default function RelicCard({ relic }: Props) {
+export default function RelicCard({
+  relic,
+  localStorage,
+  setToLocalStorage,
+}: Props) {
   const [liked, setLiked] = useState(false);
-  const [localStorage, setToLocalStorage] = useLocalStorage<LocalRelicRecord>(
-    "cairn-relic-selects",
-  );
 
   const { name, charges, description, recharge } = relic;
 
   useEffect(() => {
     if (Array.isArray(localStorage?.relicList)) {
       const isFavorite = !!localStorage?.relicList.find(
-        (item) => item.id === relic.id,
+        (item) => item.id === relic.id
       );
 
       if (isFavorite) {
@@ -37,14 +37,15 @@ export default function RelicCard({ relic }: Props) {
   }, [localStorage?.relicList]);
 
   const toggleFavorite = () => {
-    const result = setFavorite({
-      currentLocalStorage: localStorage,
+    const toggleLiked = !liked;
+    setLiked(toggleLiked);
+
+    const result = getFavoritesUpdate({
+      currentList: localStorage,
       item: relic,
       label: "relicList",
-      liked,
-      setLiked,
+      likedUpdate: toggleLiked,
     });
-
     setToLocalStorage(result);
   };
 
@@ -58,7 +59,7 @@ export default function RelicCard({ relic }: Props) {
               Charges: {charges}
             </p>
           </div>
-          <FavoriteButton isFav={liked} setFav={toggleFavorite} />
+          <FavoriteButton isFav={liked} handleOnFav={toggleFavorite} />
         </div>
       </CardHeader>
       <Divider />

@@ -4,16 +4,16 @@ import { AddButton, MinusButton } from "./icons";
 
 type Props = {
   isFav?: boolean;
-  setFav: () => void;
+  handleOnFav: () => void;
 };
-export function FavoriteButton({ isFav, setFav }: Props) {
+export function FavoriteButton({ isFav, handleOnFav }: Props) {
   return (
     <Button
       isIconOnly
       className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
       radius="full"
       variant="faded"
-      onPress={() => setFav()}
+      onClick={handleOnFav}
     >
       {isFav ? <MinusButton /> : <AddButton />}
     </Button>

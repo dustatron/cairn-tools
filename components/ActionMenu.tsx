@@ -5,9 +5,9 @@ import {
 } from "@/types/pocketbase-types";
 import React, { useState } from "react";
 
-import { setFavorite } from "@/utils/setFavorite";
+import { getFavoritesUpdate } from "@/utils/setFavorite";
 import { ListLabels } from "@/types";
-import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
+import { LocalStore } from "@/utils/hooks/useLocalStorage";
 import {
   LocalMonsterRecord,
   LocalRelicsRecord,
@@ -18,46 +18,50 @@ import { FavoriteButton } from "./FavoriteButton";
 type Props = {
   item: RelicsRecord | MonstersRecord | SpellsRecord;
   label: ListLabels;
+  localStorage: LocalRelicsRecord | LocalMonsterRecord | LocalSpellRecord;
+  setToLocalStorage: (props: LocalStore) => void;
 };
 
-export default function ActionMenu({ item, label }: Props) {
+export default function ActionMenu({
+  item,
+  label,
+  localStorage,
+  setToLocalStorage,
+}: Props) {
   const [liked, setLiked] = useState(false);
-  const [localStorage, setToLocalStorage] = useLocalStorage<
-    LocalRelicsRecord | LocalMonsterRecord | LocalSpellRecord
-  >("cairn-relic-selects");
 
-  const getFavStatus = (itemLabel: ListLabels): boolean => {
+  const getFavStatus = (itemLabel: ListLabels, itemId: string): boolean => {
     if (itemLabel === "monsterList") {
       return !!(localStorage as LocalMonsterRecord).monsterList?.find(
-        (monster) => monster.id === item.id
+        (monster) => monster.id === itemId
       );
     }
     if (itemLabel === "relicList") {
       return !!(localStorage as LocalRelicsRecord).relicList?.find(
-        (relic) => relic.id === item.id
+        (relic) => relic.id === itemId
       );
     }
     if (itemLabel === "spellList") {
       return !!(localStorage as LocalSpellRecord).spellList?.find(
-        (spell) => spell.id === item.id
+        (spell) => spell.id === itemId
       );
     }
-    return true;
+    return false;
   };
 
-  const isFav = getFavStatus(label);
+  const isFav = getFavStatus(label, item.id);
 
   const toggleFavorite = () => {
-    const result = setFavorite({
-      currentLocalStorage: localStorage,
+    const likeToggled = !isFav;
+    setLiked(likeToggled);
+    const result = getFavoritesUpdate({
+      currentList: localStorage,
       item,
       label,
-      liked: isFav,
-      setLiked,
+      likedUpdate: likeToggled,
     });
-
     setToLocalStorage(result);
   };
 
-  return <FavoriteButton isFav={isFav} setFav={toggleFavorite} />;
+  return <FavoriteButton isFav={isFav} handleOnFav={toggleFavorite} />;
 }

@@ -1,22 +1,22 @@
 "use client";
 import { useState } from "react";
 
-type LocalStore = { [key: string]: any };
+export type LocalStore = { [key: string]: any };
 
 export function useLocalStorage<T>(
   storageKey:
     | "cairn-monster-selects"
     | "cairn-spell-selects"
-    | "cairn-relic-selects",
+    | "cairn-relic-selects"
 ): [T, (localStore: LocalStore) => void] {
   const [storageVal, setStorageVal] = useState<T>(
-    getFromLocalStorage<T>(storageKey),
+    getFromLocalStorage<T>(storageKey)
   );
 
   const setter = (toStore: LocalStore) => {
-    setToLocalStorage(storageKey, toStore);
+    setStorageVal(toStore as T);
     if (typeof window !== "undefined") {
-      setStorageVal(toStore as T);
+      setToLocalStorage(storageKey, toStore);
     }
   };
 

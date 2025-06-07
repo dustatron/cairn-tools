@@ -10,12 +10,17 @@ import { RandomTables } from "@/components/RandomTables";
 import { SearchInput } from "@/components/SearchInput";
 import { RelicsRecord } from "@/types/pocketbase-types";
 import { Lists } from "@/types";
+import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
+import { LocalRelicsRecord } from "@/types/sharedTypes";
 
 type Props = {
   relicList: RelicsRecord[];
 };
 
 export default function RelicList({ relicList }: Props) {
+  const [localStorage, setToLocalStorage] = useLocalStorage<LocalRelicsRecord>(
+    "cairn-relic-selects"
+  );
   const [filteredList, setFilteredList] = useState<RelicsRecord[]>(relicList);
   const [currentList, setList] = useState<Lists>([]);
 
@@ -54,14 +59,34 @@ export default function RelicList({ relicList }: Props) {
         <div className="flex flex-wrap gap-3 justify-center">
           {filteredList &&
             filteredList.map((relic) => (
-              <RelicCard key={relic.id} relic={relic} />
+              <RelicCard
+                key={relic.id}
+                relic={relic}
+                localStorage={localStorage}
+                setToLocalStorage={setToLocalStorage}
+              />
             ))}
         </div>
       </Tab>
       <Tab key="random-table" title="Random Tables">
         <RandomTables list={relicList} setList={setList}>
-          <RelicTable list={currentList} />
+          <RelicTable
+            list={currentList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
         </RandomTables>
+      </Tab>
+      <Tab key="collection" title="Collection">
+        {localStorage.relicList?.length ? (
+          <RelicTable
+            list={localStorage.relicList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
+        ) : (
+          <div>No Relics in your collection</div>
+        )}
       </Tab>
     </Tabs>
   );

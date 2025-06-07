@@ -10,11 +10,16 @@ import { MonsterCard } from "./MonsterCard";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
 import { RandomTables } from "@/components/RandomTables";
+import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
+import { LocalMonsterRecord } from "@/types/sharedTypes";
 
 type Props = {
   list: MonstersRecord[];
 };
 export function MonsterLister({ list }: Props) {
+  const [localStorage, setToLocalStorage] = useLocalStorage<LocalMonsterRecord>(
+    "cairn-monster-selects"
+  );
   const [filteredList, setFilteredList] = useState<MonstersRecord[]>(list);
   const [currentList, setList] = useState<MonstersRecord[]>([]);
 
@@ -52,14 +57,30 @@ export function MonsterLister({ list }: Props) {
         </div>
         <div className="flex flex-wrap gap-3 justify-center">
           {filteredList.map((monster) => (
-            <MonsterCard key={monster.id} monster={monster} />
+            <MonsterCard
+              key={monster.id}
+              monster={monster}
+              localStorage={localStorage}
+              setToLocalStorage={setToLocalStorage}
+            />
           ))}
         </div>
       </Tab>
       <Tab key="random-table" title="Random Tables">
         <RandomTables list={list} setList={setList}>
-          <MonsterTables list={currentList} />
+          <MonsterTables
+            list={currentList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
         </RandomTables>
+      </Tab>
+      <Tab key="collection" title="Collection">
+        <MonsterTables
+          list={localStorage.monsterList}
+          localStorage={localStorage}
+          setToLocalStorage={setToLocalStorage}
+        />
       </Tab>
     </Tabs>
   );

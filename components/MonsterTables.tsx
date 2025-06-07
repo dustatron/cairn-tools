@@ -10,11 +10,19 @@ import {
 import ActionMenu from "./ActionMenu";
 
 import { MonstersRecord } from "@/types/pocketbase-types";
+import { LocalStore, useLocalStorage } from "@/utils/hooks/useLocalStorage";
+import { LocalMonsterRecord } from "@/types/sharedTypes";
 
 type Props = {
   list: MonstersRecord[];
+  localStorage: LocalMonsterRecord;
+  setToLocalStorage: (localStore: LocalStore) => void;
 };
-export function MonsterTables({ list }: Props) {
+export function MonsterTables({
+  list,
+  localStorage,
+  setToLocalStorage,
+}: Props) {
   return (
     <Table aria-label="Monster list">
       <TableHeader>
@@ -35,7 +43,12 @@ export function MonsterTables({ list }: Props) {
             <TableRow key={row.id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>
-                <ActionMenu item={row} label="monsterList" />
+                <ActionMenu
+                  item={row}
+                  label="monsterList"
+                  localStorage={localStorage}
+                  setToLocalStorage={setToLocalStorage}
+                />
               </TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.armor}</TableCell>

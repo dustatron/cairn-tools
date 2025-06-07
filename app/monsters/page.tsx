@@ -8,7 +8,7 @@ const getMonsterList = async () => {
   const pb = await createServerPb();
   const monsterList = await pb
     .collection("monsters")
-    .getFullList({ sort: "-created" });
+    .getFullList({ sort: "created" });
   return monsterList;
 };
 

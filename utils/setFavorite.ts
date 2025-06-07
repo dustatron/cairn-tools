@@ -1,45 +1,37 @@
 type Props = {
-  setLiked: (isLike: boolean) => void;
-  liked: boolean;
+  likedUpdate: boolean;
   item: {
     id: string;
   };
   label: string;
-  currentLocalStorage: { [key: string]: any } | null;
+  currentList: { [key: string]: any } | null;
 };
 
-export const setFavorite = ({
-  setLiked,
-  liked,
+export const getFavoritesUpdate = ({
+  likedUpdate,
   item,
   label,
-  currentLocalStorage,
+  currentList,
 }: Props) => {
-  setLiked(!liked);
-
+  if (!currentList || !Array.isArray(currentList[label])) {
+    return { [label]: [item] };
+  }
   let result = {};
+  // remove
+  if (!likedUpdate) {
+    const filterd = currentList[label].filter(
+      // @ts-ignore
+      (value) => value.id != item.id
+    );
 
-  if (liked) {
-    if (currentLocalStorage && Array.isArray(currentLocalStorage[label])) {
-      const filterd = currentLocalStorage[label].filter(
-        // @ts-ignore
-        (value) => value.id != item.id,
-      );
-
-      result = { [label]: filterd };
-    }
-  }
-  if (!liked) {
-    if (currentLocalStorage && Array.isArray(currentLocalStorage[label])) {
-      result = {
-        [label]: [...currentLocalStorage[label], item],
-      };
-    } else {
-      result = {
-        [label]: [item],
-      };
-    }
+    result = { [label]: filterd };
   }
 
+  // Add
+  if (likedUpdate) {
+    result = {
+      [label]: [item, ...currentList[label]],
+    };
+  }
   return result;
 };
