@@ -63,5 +63,16 @@ export default function ActionMenu({
     setToLocalStorage(result);
   };
 
-  return <FavoriteButton isFav={isFav} handleOnFav={toggleFavorite} />;
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "start",
+        alignItems: "center",
+        paddingTop: "20px",
+      }}
+    >
+      <FavoriteButton isFav={isFav} handleOnFav={toggleFavorite} />
+    </div>
+  );
 }
