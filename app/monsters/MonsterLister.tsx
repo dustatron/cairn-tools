@@ -76,11 +76,15 @@ export function MonsterLister({ list }: Props) {
         </RandomTables>
       </Tab>
       <Tab key="collection" title="Collection">
-        <MonsterTables
-          list={localStorage.monsterList}
-          localStorage={localStorage}
-          setToLocalStorage={setToLocalStorage}
-        />
+        {localStorage?.monsterList.length ? (
+          <MonsterTables
+            list={localStorage?.monsterList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
+        ) : (
+          <div>No Monsters in your collection</div>
+        )}
       </Tab>
     </Tabs>
   );

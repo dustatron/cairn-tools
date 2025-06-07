@@ -32,17 +32,17 @@ export default function ActionMenu({
 
   const getFavStatus = (itemLabel: ListLabels, itemId: string): boolean => {
     if (itemLabel === "monsterList") {
-      return !!(localStorage as LocalMonsterRecord).monsterList?.find(
+      return !!(localStorage as LocalMonsterRecord)?.monsterList?.find(
         (monster) => monster.id === itemId
       );
     }
     if (itemLabel === "relicList") {
-      return !!(localStorage as LocalRelicsRecord).relicList?.find(
+      return !!(localStorage as LocalRelicsRecord)?.relicList?.find(
         (relic) => relic.id === itemId
       );
     }
     if (itemLabel === "spellList") {
-      return !!(localStorage as LocalSpellRecord).spellList?.find(
+      return !!(localStorage as LocalSpellRecord)?.spellList?.find(
         (spell) => spell.id === itemId
       );
     }

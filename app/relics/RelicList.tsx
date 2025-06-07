@@ -78,9 +78,9 @@ export default function RelicList({ relicList }: Props) {
         </RandomTables>
       </Tab>
       <Tab key="collection" title="Collection">
-        {localStorage.relicList?.length ? (
+        {localStorage?.relicList?.length ? (
           <RelicTable
-            list={localStorage.relicList}
+            list={localStorage?.relicList}
             localStorage={localStorage}
             setToLocalStorage={setToLocalStorage}
           />

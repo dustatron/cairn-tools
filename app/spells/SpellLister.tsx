@@ -77,11 +77,15 @@ export function SpellLister({ list }: Props) {
         </RandomTables>
       </Tab>
       <Tab key="collection" title="Collection">
-        <SpellTable
-          list={localStorage.spellList}
-          localStorage={localStorage}
-          setToLocalStorage={setToLocalStorage}
-        />
+        {localStorage?.spellList.length ? (
+          <SpellTable
+            list={localStorage?.spellList}
+            localStorage={localStorage}
+            setToLocalStorage={setToLocalStorage}
+          />
+        ) : (
+          <div>No Spells in your collection</div>
+        )}
       </Tab>
     </Tabs>
   );

@@ -14,7 +14,6 @@ import {
 } from "@/types/sharedTypes";
 import { useLocalStorage } from "@/utils/hooks/useLocalStorage";
 import { MonsterTables } from "@/components/MonsterTables";
-import { Button } from "@nextui-org/button";
 
 export function CollectionView() {
   const [localStorageMonsters, setToLsMonsters] =
